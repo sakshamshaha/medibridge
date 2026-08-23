@@ -13,7 +13,7 @@ export class HospitalsService {
     });
 
     // Group by procedure to match frontend format
-    const grouped = [];
+    const grouped: any[] = [];
     
     procedures.forEach(proc => {
       let existing = grouped.find(g => g.name === proc.name);
