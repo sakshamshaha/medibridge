@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dr. Marcus Chen - MediBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-primary-fixed-variant": "#005047",
+                      "on-surface": "#191c1e",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#5c647a",
+                      "surface-container-low": "#f2f4f6",
+                      "border-subtle": "#E2E8F0",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#3c4a46",
+                      "on-tertiary-container": "#3e4e63",
+                      "surface-dim": "#d8dadc",
+                      "on-secondary-fixed": "#131b2e",
+                      "alert-rose": "#F43F5E",
+                      "success-emerald": "#10B981",
+                      "inverse-primary": "#3cddc7",
+                      "surface-container-high": "#e6e8ea",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#2dd4bf",
+                      "on-primary-container": "#00574d",
+                      "primary-fixed": "#62fae3",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f7f9fb",
+                      "tertiary-fixed": "#d3e4fe",
+                      "outline": "#6b7a76",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary": "#505f76",
+                      "background": "#f7f9fb",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#bacac5",
+                      "primary-fixed-dim": "#3cddc7",
+                      "warning-amber": "#F59E0B",
+                      "tertiary-container": "#afbfd9",
+                      "surface-tint": "#006b5f",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "secondary-container": "#dae2fd",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "secondary": "#565e74",
+                      "surface-variant": "#e0e3e5",
+                      "surface-container": "#eceef0",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "inverse-surface": "#2d3133",
+                      "primary": "#006b5f",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#191c1e",
+                      "surface-white": "#FFFFFF",
+                      "on-primary-fixed": "#00201c",
+                      "secondary-fixed": "#dae2fd",
+                      "surface": "#f7f9fb",
+                      "surface-container-highest": "#e0e3e5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "bento-gap": "16px",
+                      "base": "4px",
+                      "card-padding": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "hero-display": [
+                              "Geist"
+                      ],
+                      "status-label": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "data-tabular": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "hero-display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "status-label": [
+                              "13px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-tabular": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-surface-white/80 backdrop-blur-xl border border-border-subtle;
+            }
+            .bento-card {
+                @apply bg-surface-white rounded-xl border border-border-subtle p-card-padding transition-all duration-300 hover:shadow-[0px_10px_15px_rgba(15,23,42,0.08)] hover:-translate-y-1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Rendered due to top-level destination logic) -->
+<header class="bg-surface-container/80 backdrop-blur-xl shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary" href="#">MediBridge</a>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Buy Medicines</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Hospital Inquiry</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 hover:text-primary transition-colors duration-200" href="#">Doctor Inquiry</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface hover:text-primary transition-colors"><span class="material-symbols-outlined">location_on</span></button>
+<button class="text-on-surface hover:text-primary transition-colors"><span class="material-symbols-outlined">shopping_cart</span></button>
+<button class="text-on-surface hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border-subtle">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a person, soft studio lighting, neutral background, high resolution, 50mm lens, corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXlKWTOUtPyt0AMpP_kBiirv4FK9SrPgmKGqYgmFUiih1Hz4qRK0a-YEGiGG-xaQsR4kkVGeay7oSpXuNrv7f6F7Sclk3uX0r2vSFHf7KcQ6Mniz362Es-6qiQfDeU-mYFnD7ILvgAxUJ2r8A89dva1v4pNJ0Wmbgaljv4wFHQtcmKD-KsHDJAGC2CZHxBJ2KY3TuhiYASgL9ldQKti_M-hyI_rX6JYTwThp9rvbgFZHMvQOCmkhML"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-screen-2xl mx-auto px-margin-desktop py-8 grid grid-cols-1 md:grid-cols-12 gap-bento-gap relative">
+<!-- Left Content Area (8 Columns) -->
+<div class="md:col-span-8 flex flex-col gap-bento-gap">
+<!-- Hero Profile Card -->
+<section class="bento-card flex flex-col md:flex-row gap-8 items-start relative overflow-hidden">
+<!-- Subtle background accent -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+<div class="w-32 h-32 md:w-48 md:h-48 rounded-xl overflow-hidden shrink-0 border border-border-subtle shadow-sm relative group">
+<img alt="Dr. Marcus Chen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A professional portrait of an Asian male doctor in his 40s wearing a white lab coat over a blue shirt, smiling warmly, holding a stethoscope. Clean clinical background, soft natural lighting, high quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbAGafWljyB6nY2c8_xThd8yr6y6b2dfjyvzuTTm1QHGhi4JWce2B3Fy8ezLVP9jBG-pjp3-APzL6UlRp5zAEC4AAX0-0GvOEUBu38zy7tGteC8-vHhGwx08gccSEb56T3X9O-klvEW-fb8L62KuGBfFzHi3Elr0xtQVt4bKPL__CyAX06Wyooo-ZMsJUX2bPzUQVHQtQw5hRtmTUEy549SdexcfkLXOiB-6-LMRtM1H9VQMhhCV11"/>
+<div class="absolute bottom-2 right-2 bg-success-emerald/10 backdrop-blur-md rounded-full px-2 py-1 flex items-center gap-1 border border-success-emerald/20">
+<span class="material-symbols-outlined text-[14px] text-success-emerald" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-1">Dr. Marcus Chen</h1>
+<p class="font-body-lg text-body-lg text-tertiary">Interventional Cardiologist</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container rounded-lg px-3 py-1.5 border border-border-subtle">
+<span class="material-symbols-outlined text-warning-amber" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-status-label text-status-label text-on-surface">4.9</span>
+<span class="text-secondary text-sm">(120+)</span>
+</div>
+</div>
+<p class="font-data-tabular text-data-tabular text-on-surface-variant mb-4">MBBS, MD Cardiology, FACC</p>
+<div class="flex flex-wrap gap-4 mb-6">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+</div>
+<span class="font-data-tabular text-data-tabular text-on-surface">15+ Years</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+<span class="font-data-tabular text-data-tabular text-on-surface">500+ Procedures</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">local_hospital</span>
+</div>
+<span class="font-data-tabular text-data-tabular text-on-surface">Memorial Health Center</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid - 2 Columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-bento-gap">
+<!-- About Section -->
+<section class="bento-card md:col-span-2">
+<h2 class="font-label-caps text-label-caps text-tertiary mb-4 uppercase tracking-wider">About</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                        Dr. Marcus Chen is a board-certified Interventional Cardiologist with over 15 years of experience in diagnosing and treating complex cardiovascular conditions. He specializes in minimally invasive structural heart procedures and is dedicated to providing patient-centered care utilizing the latest advancements in cardiac technology.
+                    </p>
+<h3 class="font-status-label text-status-label text-on-surface mb-3">Areas of Expertise</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-low border border-border-subtle rounded-full px-4 py-1.5 font-data-tabular text-data-tabular text-on-surface-variant">Angioplasty</span>
+<span class="bg-surface-container-low border border-border-subtle rounded-full px-4 py-1.5 font-data-tabular text-data-tabular text-on-surface-variant">Echocardiogram</span>
+<span class="bg-surface-container-low border border-border-subtle rounded-full px-4 py-1.5 font-data-tabular text-data-tabular text-on-surface-variant">Heart Valve Repair</span>
+<span class="bg-surface-container-low border border-border-subtle rounded-full px-4 py-1.5 font-data-tabular text-data-tabular text-on-surface-variant">Cardiac Catheterization</span>
+</div>
+</section>
+<!-- Practice Locations -->
+<section class="bento-card flex flex-col h-full">
+<h2 class="font-label-caps text-label-caps text-tertiary mb-4 uppercase tracking-wider">Practice Locations</h2>
+<div class="space-y-4 flex-1">
+<div class="p-4 rounded-lg bg-surface-container-lowest border border-border-subtle hover:border-primary-container transition-colors">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">Memorial Health Center</h3>
+<span class="bg-primary-container/10 text-primary font-label-caps text-[10px] px-2 py-0.5 rounded-full">PRIMARY</span>
+</div>
+<p class="font-data-tabular text-data-tabular text-on-surface-variant mb-3 flex items-start gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary mt-0.5">location_on</span>
+                                1200 Healthcare Blvd, Suite 400<br/>Metropolis, NY 10001
+                            </p>
+<a class="inline-flex items-center gap-1 text-primary font-status-label text-status-label hover:underline" href="#">
+                                Get Directions <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-lowest border border-border-subtle hover:border-primary-container transition-colors">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">City General Hospital</h3>
+</div>
+<p class="font-data-tabular text-data-tabular text-on-surface-variant mb-3 flex items-start gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary mt-0.5">location_on</span>
+                                450 Medical Way, East Wing<br/>Metropolis, NY 10005
+                            </p>
+<a class="inline-flex items-center gap-1 text-primary font-status-label text-status-label hover:underline" href="#">
+                                Get Directions <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Procedures -->
+<section class="bento-card flex flex-col h-full">
+<h2 class="font-label-caps text-label-caps text-tertiary mb-4 uppercase tracking-wider">Procedures</h2>
+<ul class="space-y-3 flex-1">
+<li class="flex items-center gap-3 p-3 rounded-lg border border-border-subtle bg-surface-container-lowest">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">vital_signs</span>
+</div>
+<div>
+<h4 class="font-data-tabular text-data-tabular text-on-surface font-semibold">Cardiac Stenting</h4>
+<p class="text-[12px] text-on-surface-variant">Minimally invasive</p>
+</div>
+</li>
+<li class="flex items-center gap-3 p-3 rounded-lg border border-border-subtle bg-surface-container-lowest">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">monitor_heart</span>
+</div>
+<div>
+<h4 class="font-data-tabular text-data-tabular text-on-surface font-semibold">TAVI / TAVR</h4>
+<p class="text-[12px] text-on-surface-variant">Transcatheter aortic valve</p>
+</div>
+</li>
+<li class="flex items-center gap-3 p-3 rounded-lg border border-border-subtle bg-surface-container-lowest">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<h4 class="font-data-tabular text-data-tabular text-on-surface font-semibold">PCNL Surgery Coordination</h4>
+<p class="text-[12px] text-on-surface-variant">Multidisciplinary care</p>
+</div>
+</li>
+</ul>
+</section>
+<!-- Experience & Awards -->
+<section class="bento-card md:col-span-2">
+<h2 class="font-label-caps text-label-caps text-tertiary mb-6 uppercase tracking-wider">Experience &amp; Awards</h2>
+<div class="relative border-l-2 border-border-subtle ml-3 space-y-6">
+<!-- Timeline Item 1 -->
+<div class="relative pl-6">
+<div class="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-1.5 shadow-[0_0_0_4px_white]"></div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">Head of Interventional Cardiology</h3>
+<p class="font-data-tabular text-data-tabular text-primary font-medium">Memorial Health Center | 2018 - Present</p>
+<p class="font-data-tabular text-data-tabular text-on-surface-variant mt-1">Leading a team of 15 specialists in advancing minimally invasive cardiac care.</p>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-6">
+<div class="absolute w-3 h-3 bg-surface-variant rounded-full -left-[7px] top-1.5 shadow-[0_0_0_4px_white]"></div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">Excellence in Patient Care Award</h3>
+<p class="font-data-tabular text-data-tabular text-tertiary font-medium">National Cardiac Association | 2021</p>
+<p class="font-data-tabular text-data-tabular text-on-surface-variant mt-1">Recognized for outstanding patient outcomes and satisfaction rates.</p>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-6">
+<div class="absolute w-3 h-3 bg-surface-variant rounded-full -left-[7px] top-1.5 shadow-[0_0_0_4px_white]"></div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface">Fellowship in Structural Heart Disease</h3>
+<p class="font-data-tabular text-data-tabular text-tertiary font-medium">Johns Hopkins Medicine | 2010 - 2012</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Right Sticky Sidebar (4 Columns) -->
+<div class="md:col-span-4">
+<div class="glass-panel rounded-xl p-card-padding shadow-md sticky top-[100px]">
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface mb-6">Book Appointment</h2>
+<!-- Consultation Type Toggle -->
+<div class="flex p-1 bg-surface-container rounded-lg mb-6">
+<button class="flex-1 py-2 text-center rounded-md bg-surface-white shadow-sm font-status-label text-status-label text-primary transition-all">
+                        In-person
+                    </button>
+<button class="flex-1 py-2 text-center rounded-md text-on-surface-variant font-status-label text-status-label hover:text-on-surface transition-all">
+                        Virtual
+                    </button>
+</div>
+<!-- Date Picker Skeleton -->
+<div class="mb-6">
+<div class="flex justify-between items-center mb-3">
+<h3 class="font-data-tabular text-data-tabular font-medium text-on-surface">October 2023</h3>
+<div class="flex gap-2">
+<button class="w-6 h-6 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+<button class="w-6 h-6 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center mb-2">
+<div class="font-label-caps text-label-caps text-tertiary">M</div>
+<div class="font-label-caps text-label-caps text-tertiary">T</div>
+<div class="font-label-caps text-label-caps text-tertiary">W</div>
+<div class="font-label-caps text-label-caps text-tertiary">T</div>
+<div class="font-label-caps text-label-caps text-tertiary">F</div>
+<div class="font-label-caps text-label-caps text-tertiary">S</div>
+<div class="font-label-caps text-label-caps text-tertiary">S</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center font-data-tabular text-data-tabular">
+<div class="p-1 text-tertiary opacity-50">25</div><div class="p-1 text-tertiary opacity-50">26</div><div class="p-1 text-tertiary opacity-50">27</div><div class="p-1 text-tertiary opacity-50">28</div><div class="p-1 text-tertiary opacity-50">29</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">30</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">1</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">2</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">3</div>
+<div class="p-1 bg-primary text-on-primary rounded font-semibold shadow-sm cursor-pointer">4</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">5</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">6</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">7</div>
+<div class="p-1 text-on-surface hover:bg-surface-container rounded cursor-pointer">8</div>
+</div>
+</div>
+<!-- Time Slots -->
+<div class="mb-6">
+<h3 class="font-data-tabular text-data-tabular font-medium text-on-surface mb-3">Available Slots</h3>
+<div class="mb-3">
+<span class="font-label-caps text-label-caps text-tertiary block mb-2">Morning</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 border border-border-subtle rounded-md font-data-tabular text-data-tabular text-on-surface hover:border-primary hover:text-primary transition-colors">09:00 AM</button>
+<button class="px-3 py-1.5 border border-primary bg-primary-container/10 rounded-md font-data-tabular text-data-tabular text-primary font-medium transition-colors">10:30 AM</button>
+<button class="px-3 py-1.5 border border-border-subtle rounded-md font-data-tabular text-data-tabular text-on-surface opacity-50 cursor-not-allowed">11:00 AM</button>
+</div>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-tertiary block mb-2">Afternoon</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 border border-border-subtle rounded-md font-data-tabular text-data-tabular text-on-surface hover:border-primary hover:text-primary transition-colors">02:00 PM</button>
+<button class="px-3 py-1.5 border border-border-subtle rounded-md font-data-tabular text-data-tabular text-on-surface hover:border-primary hover:text-primary transition-colors">03:30 PM</button>
+</div>
+</div>
+</div>
+<hr class="border-border-subtle mb-6"/>
+<div class="flex justify-between items-center mb-6">
+<span class="font-body-md text-body-md text-on-surface-variant">Consultation Fee</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">$150</span>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-status-label text-status-label hover:bg-surface-tint transition-colors shadow-sm flex items-center justify-center gap-2">
+                    Book Consultation <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

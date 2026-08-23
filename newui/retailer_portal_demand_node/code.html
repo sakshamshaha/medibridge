@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBridge Retail - Demand Node</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#6b7a76",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#3cddc7",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "tertiary": "#505f76",
+                        "background": "#f7f9fb",
+                        "primary-container": "#2dd4bf",
+                        "error": "#ba1a1a",
+                        "warning-amber": "#F59E0B",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-tint": "#006b5f",
+                        "success-emerald": "#10B981",
+                        "on-primary-fixed": "#00201c",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container": "#eceef0",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary-fixed": "#131b2e",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "surface-white": "#FFFFFF",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-primary-container": "#00574d",
+                        "inverse-surface": "#0a192f", // Deep Navy Dark Theme
+                        "secondary": "#565e74",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-primary-fixed-variant": "#005047",
+                        "alert-rose": "#F43F5E",
+                        "outline-variant": "#bacac5",
+                        "tertiary-container": "#afbfd9",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#62fae3",
+                        "on-tertiary-container": "#3e4e63",
+                        "primary": "#006b5f",
+                        "secondary-container": "#dae2fd",
+                        "surface-bright": "#f7f9fb",
+                        "border-subtle": "#E2E8F0",
+                        "on-surface-variant": "#3c4a46",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#3cddc7",
+                        "on-surface": "#191c1e",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "bento-gap": "16px",
+                        "margin-mobile": "16px",
+                        "card-padding": "24px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "status-label": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "data-tabular": ["Inter"],
+                        "hero-display": ["Geist"]
+                    },
+                    "fontSize": {
+                        "status-label": ["13px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "hero-display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Base Dark Theme Overrides to force Deep Navy */
+        body {
+            background-color: #050e1d; /* Very dark navy */
+            color: #ffffff;
+        }
+        
+        .bento-card {
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glow-critical {
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.15), inset 0 0 10px rgba(244, 63, 94, 0.05);
+            border-left: 4px solid #F43F5E;
+        }
+
+        .glow-upcoming {
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.1), inset 0 0 10px rgba(45, 212, 191, 0.05);
+            border-left: 4px solid #3cddc7;
+        }
+
+        .dimmed-fulfilled {
+            opacity: 0.6;
+            border-left: 4px solid #6b7a76;
+            filter: grayscale(40%);
+        }
+
+        /* Checkbox toggle styling */
+        .toggle-checkbox:checked {
+            background-color: #3cddc7;
+            border-color: #3cddc7;
+        }
+        
+        .toggle-checkbox:checked + div {
+            transform: translateX(100%);
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- SideNavBar -->
+<nav class="bg-surface-white/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-r border-outline-variant/30 dark:border-outline/20 shadow-sm dark:shadow-none docked left-0 h-full w-72 flex flex-col fixed left-0 top-0 z-50 py-6 hidden md:flex">
+<div class="px-8 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">MediBridge Retail</h1>
+<p class="font-label-caps text-label-caps text-tertiary mt-1">Enterprise Portal</p>
+</div>
+<div class="px-6 mb-8">
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Prescription
+            </button>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-4 overflow-y-auto">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-secondary-container/50 dark:hover:bg-on-secondary-fixed-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-secondary-container/50 dark:hover:bg-on-secondary-fixed-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">barcode_scanner</span>
+<span class="font-body-md text-body-md">Billing/Scanner</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-secondary-container/50 dark:hover:bg-on-secondary-fixed-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Stock Management</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-secondary-container/50 dark:hover:bg-on-secondary-fixed-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-body-md text-body-md">AI Sales Monitor</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary dark:border-primary-fixed-dim bg-on-secondary-fixed-variant/20 scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-body-md text-body-md">Demand Node</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-secondary-container/50 dark:hover:bg-on-secondary-fixed-variant/30 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-body-md text-body-md">Alerts</span>
+</a>
+</div>
+<div class="mt-auto px-4 pt-6 border-t border-outline-variant/20 dark:border-outline/10 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-body-md text-body-md text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span class="font-body-md text-body-md text-sm">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:pl-72 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface/60 dark:bg-background/60 backdrop-blur-md border-b border-outline-variant/20 docked top-0 w-full flex justify-between items-center h-16 px-margin-desktop sticky top-0 z-40 md:pl-8">
+<div class="flex-1 flex items-center">
+<div class="relative w-96 hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-surface-variant">search</span>
+<input class="w-full bg-inverse-surface/30 border border-outline-variant/20 rounded-full py-2 pl-10 pr-4 text-white focus:outline-none focus:border-primary-fixed-dim transition-colors font-body-md text-body-md placeholder-tertiary" placeholder="Search inventory, invoices, AI nodes..." type="text"/>
+</div>
+<!-- Mobile brand (hidden on desktop) -->
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim md:hidden">MediBridge</h1>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-alert-rose rounded-full"></span>
+</button>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A futuristic, hyper-realistic macro shot of a sleek robotic medical dispensing eye or lens, glowing soft teal and deep navy blue. High tech medical equipment aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpNJ40OD96J9qfL_2tvs4fscOmQ0Vxviwh8cq6Jg2UgTdR_muXfjFcImw1UQ9IrZit2hCZwVqUEyGTC28MLAc0QOYxGR16q6WZ84uqfcbW566w0XNdY-SwECuY7HffGItSQuM4FYu8c0yZXILU6dfNDmXVhZGRXENZF-3l4A52jdVGRV2Qjjt40BG-31ADk3Pb3DS_3Rn0wd33gDGyVXhRDZZcKfgNGJskUtQeFIWtc8N35kEZqxE3"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-mobile md:p-margin-desktop max-w-[1440px] mx-auto w-full">
+<header class="mb-8">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-2">Demand Node</h2>
+<p class="font-body-lg text-body-lg text-tertiary-fixed-dim">Morning Restock Checklist &amp; Operations</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
+<!-- Column 1: Critical & Upcoming (Spans 8 cols) -->
+<div class="md:col-span-8 flex flex-col gap-bento-gap">
+<!-- Critical Section -->
+<div>
+<h3 class="font-label-caps text-label-caps text-alert-rose mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                            Critical Restock Required
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-bento-gap">
+<!-- Card 1 -->
+<div class="bento-card glow-critical rounded-xl p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-white">Amoxicillin 500mg</h4>
+<p class="font-data-tabular text-data-tabular text-tertiary-fixed-dim mt-1">Capsules / Pfizer</p>
+</div>
+<span class="material-symbols-outlined text-alert-rose text-3xl">vaccines</span>
+</div>
+<div class="mb-6">
+<div class="flex justify-between font-status-label text-status-label mb-2">
+<span class="text-tertiary-fixed-dim">Current Stock</span>
+<span class="text-alert-rose">12 Units</span>
+</div>
+<div class="w-full bg-inverse-surface rounded-full h-2">
+<div class="bg-alert-rose h-2 rounded-full" style="width: 15%"></div>
+</div>
+<div class="flex justify-between font-status-label text-status-label mt-2">
+<span class="text-tertiary-fixed-dim">Required Node Level</span>
+<span class="text-white">80 Units</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-4">
+<span class="font-body-md text-body-md text-white">Mark as Ordered</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer toggle-checkbox" type="checkbox"/>
+<div class="w-11 h-6 bg-inverse-surface peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-tertiary-fixed-dim after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border border-outline-variant/20"></div>
+</label>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bento-card glow-critical rounded-xl p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-white">Lisinopril 20mg</h4>
+<p class="font-data-tabular text-data-tabular text-tertiary-fixed-dim mt-1">Tablets / Zestril</p>
+</div>
+<span class="material-symbols-outlined text-alert-rose text-3xl">medication</span>
+</div>
+<div class="mb-6">
+<div class="flex justify-between font-status-label text-status-label mb-2">
+<span class="text-tertiary-fixed-dim">Current Stock</span>
+<span class="text-alert-rose">4 Units</span>
+</div>
+<div class="w-full bg-inverse-surface rounded-full h-2">
+<div class="bg-alert-rose h-2 rounded-full" style="width: 5%"></div>
+</div>
+<div class="flex justify-between font-status-label text-status-label mt-2">
+<span class="text-tertiary-fixed-dim">Required Node Level</span>
+<span class="text-white">100 Units</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-4">
+<span class="font-body-md text-body-md text-white">Mark as Ordered</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer toggle-checkbox" type="checkbox"/>
+<div class="w-11 h-6 bg-inverse-surface peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-tertiary-fixed-dim after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border border-outline-variant/20"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Shortages Section -->
+<div class="mt-4">
+<h3 class="font-label-caps text-label-caps text-primary-fixed-dim mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                            Upcoming Shortages (AI Predicted)
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-bento-gap">
+<!-- Card 3 -->
+<div class="bento-card glow-upcoming rounded-xl p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-white">Atorvastatin 40mg</h4>
+<p class="font-data-tabular text-data-tabular text-tertiary-fixed-dim mt-1">Tablets / Lipitor</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl">prescriptions</span>
+</div>
+<div class="mb-6">
+<div class="flex justify-between font-status-label text-status-label mb-2">
+<span class="text-tertiary-fixed-dim">Current Stock</span>
+<span class="text-primary-fixed-dim">45 Units</span>
+</div>
+<div class="w-full bg-inverse-surface rounded-full h-2">
+<div class="bg-primary-fixed-dim h-2 rounded-full" style="width: 35%"></div>
+</div>
+<div class="flex justify-between font-status-label text-status-label mt-2">
+<span class="text-tertiary-fixed-dim">Required by Friday</span>
+<span class="text-white">120 Units</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-4">
+<span class="font-body-md text-body-md text-white">Mark as Ordered</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer toggle-checkbox" type="checkbox"/>
+<div class="w-11 h-6 bg-inverse-surface peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-tertiary-fixed-dim after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border border-outline-variant/20"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Fulfilled & Summary (Spans 4 cols) -->
+<div class="md:col-span-4 flex flex-col gap-bento-gap">
+<!-- AI Insight Card -->
+<div class="bento-card rounded-xl p-card-padding relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-6xl text-primary-fixed-dim">memory</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-tertiary-fixed-dim mb-2 relative z-10">AI Node Summary</h3>
+<p class="font-body-lg text-body-lg text-white mb-4 relative z-10">Demand spike detected in seasonal antihistamines. Recommending +15% bulk order increase for regional nodes.</p>
+<button class="text-primary-fixed-dim font-status-label text-status-label flex items-center gap-1 hover:text-white transition-colors relative z-10">
+                            View Forecast <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Fulfilled Section -->
+<div>
+<h3 class="font-label-caps text-label-caps text-outline mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                            Fulfilled Today
+                        </h3>
+<div class="flex flex-col gap-3">
+<!-- Fulfilled Card 1 -->
+<div class="bento-card dimmed-fulfilled rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-outline/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">done_all</span>
+</div>
+<div>
+<h4 class="font-data-tabular text-data-tabular text-white">Omeprazole 20mg</h4>
+<p class="font-label-caps text-label-caps text-tertiary mt-1">Ordered: 200 Units</p>
+</div>
+</div>
+<span class="font-status-label text-status-label text-outline">08:14 AM</span>
+</div>
+<!-- Fulfilled Card 2 -->
+<div class="bento-card dimmed-fulfilled rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-outline/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">done_all</span>
+</div>
+<div>
+<h4 class="font-data-tabular text-data-tabular text-white">Metformin 500mg</h4>
+<p class="font-label-caps text-label-caps text-tertiary mt-1">Ordered: 150 Units</p>
+</div>
+</div>
+<span class="font-status-label text-status-label text-outline">07:30 AM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

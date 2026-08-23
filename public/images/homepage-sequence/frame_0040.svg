@@ -1,0 +1,27 @@
+
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#050505" />
+  
+  <!-- Particles -->
+  <circle cx="346.6806722689076" cy="406.44097478962465" r="4" fill="#00B8D9" opacity="1" /><circle cx="444.9684961912945" cy="326.2303813288263" r="7.686761559263687" fill="#00B8D9" opacity="1" /><circle cx="352.78234091636216" cy="372.2757411943093" r="4.228872677398613" fill="#00B8D9" opacity="1" /><circle cx="406.2087785638031" cy="304.19943280964276" r="6.232890354323899" fill="#00B8D9" opacity="1" /><circle cx="386.5351330669413" cy="397.69563493968434" r="5.494934857357293" fill="#00B8D9" opacity="1" /><circle cx="395.0391181572684" cy="297.938999306091" r="5.813918064843165" fill="#00B8D9" opacity="1" /><circle cx="413.4457239429033" cy="319.08217053111247" r="6.504347091948148" fill="#00B8D9" opacity="1" /><circle cx="364.3379147188151" cy="444.0592240473877" r="4.662320520579669" fill="#00B8D9" opacity="1" /><circle cx="275.13796777783136" cy="287.0232712436847" r="6.683556133786624" fill="#00B8D9" opacity="1" /><circle cx="297.5868533345612" cy="332.6110140009521" r="5.841501797694946" fill="#00B8D9" opacity="1" /><circle cx="343.6427879029636" cy="239.55619459079105" r="4.113950587721774" fill="#00B8D9" opacity="1" /><circle cx="327.6125683845993" cy="356.10675458086337" r="4.715241721743951" fill="#00B8D9" opacity="1" /><circle cx="259.13500079142796" cy="256.8447754538629" r="7.283825029415311" fill="#00B8D9" opacity="1" /><circle cx="346.1657998219196" cy="435.4169792971638" r="4.019312788397656" fill="#00B8D9" opacity="1" /><circle cx="327.06184622570623" cy="262.591635446747" r="4.735899227467598" fill="#00B8D9" opacity="1" /><circle cx="393.79537972309134" cy="470.638983853024" r="5.767265622394916" fill="#00B8D9" opacity="1" /><circle cx="445.5217831003747" cy="432.278197654065" r="7.707515268382849" fill="#00B8D9" opacity="1" /><circle cx="392.9827087547703" cy="213.4536170123092" r="5.736782456049696" fill="#00B8D9" opacity="1" /><circle cx="415.3758279509269" cy="465.1234968092027" r="6.576745004305849" fill="#00B8D9" opacity="1" /><circle cx="381.0869525689193" cy="322.6121631661306" r="5.290574422600912" fill="#00B8D9" opacity="1" />
+  
+  <!-- Top Half -->
+  <path d="M320,328.9075630252101 L320,228.9075630252101 A80,80 0 0,1 480,228.9075630252101 L480,328.9075630252101 Z" fill="url(#teal-grad)" />
+  
+  <!-- Bottom Half -->
+  <path d="M320,471.09243697478996 L320,571.09243697479 A80,80 0 0,0 480,571.09243697479 L480,471.09243697478996 Z" fill="url(#green-grad)" />
+  
+  <!-- Outer glowing rings when exploded -->
+  <circle cx="400" cy="400" r="214.21848739495798" stroke="#2ED9A0" stroke-width="2" fill="none" stroke-dasharray="10 10" opacity="0.3554621848739496" />
+
+  <defs>
+    <linearGradient id="teal-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00B8D9" />
+      <stop offset="100%" stop-color="#006c80" />
+    </linearGradient>
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#197a5a" />
+      <stop offset="100%" stop-color="#2ED9A0" />
+    </linearGradient>
+  </defs>
+</svg>

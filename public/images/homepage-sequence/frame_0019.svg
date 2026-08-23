@@ -1,0 +1,27 @@
+
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#050505" />
+  
+  <!-- Particles -->
+  
+  
+  <!-- Top Half -->
+  <path d="M320,399.4957983193277 L320,299.4957983193277 A80,80 0 0,1 480,299.4957983193277 L480,399.4957983193277 Z" fill="url(#teal-grad)" />
+  
+  <!-- Bottom Half -->
+  <path d="M320,400.5042016806723 L320,500.5042016806723 A80,80 0 0,0 480,500.5042016806723 L480,400.5042016806723 Z" fill="url(#green-grad)" />
+  
+  <!-- Outer glowing rings when exploded -->
+  <circle cx="400" cy="400" r="200.10084033613447" stroke="#2ED9A0" stroke-width="2" fill="none" stroke-dasharray="10 10" opacity="0.0025210084033613356" />
+
+  <defs>
+    <linearGradient id="teal-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00B8D9" />
+      <stop offset="100%" stop-color="#006c80" />
+    </linearGradient>
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#197a5a" />
+      <stop offset="100%" stop-color="#2ED9A0" />
+    </linearGradient>
+  </defs>
+</svg>

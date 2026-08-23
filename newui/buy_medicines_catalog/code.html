@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Buy Medicines - Pharmacy Catalog | MediBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#2dd4bf",
+                      "alert-rose": "#F43F5E",
+                      "on-secondary-fixed": "#131b2e",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#3c4a46",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "surface-container-low": "#f2f4f6",
+                      "on-background": "#191c1e",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#505f76",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-tint": "#006b5f",
+                      "surface-white": "#FFFFFF",
+                      "on-tertiary-container": "#3e4e63",
+                      "on-surface": "#191c1e",
+                      "on-secondary-container": "#5c647a",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#f7f9fb",
+                      "success-emerald": "#10B981",
+                      "secondary": "#565e74",
+                      "on-primary-container": "#00574d",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#d3e4fe",
+                      "inverse-primary": "#3cddc7",
+                      "warning-amber": "#F59E0B",
+                      "surface-dim": "#d8dadc",
+                      "on-error-container": "#93000a",
+                      "surface": "#f7f9fb",
+                      "surface-container-highest": "#e0e3e5",
+                      "surface-container": "#eceef0",
+                      "outline-variant": "#bacac5",
+                      "primary": "#006b5f",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "primary-fixed": "#62fae3",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "surface-variant": "#e0e3e5",
+                      "on-primary-fixed-variant": "#005047",
+                      "background": "#f7f9fb",
+                      "primary-fixed-dim": "#3cddc7",
+                      "inverse-surface": "#2d3133",
+                      "on-primary-fixed": "#00201c",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-container": "#dae2fd",
+                      "outline": "#6b7a76",
+                      "border-subtle": "#E2E8F0",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "secondary-fixed": "#dae2fd",
+                      "tertiary-container": "#afbfd9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "card-padding": "24px",
+                      "base": "4px",
+                      "margin-desktop": "40px",
+                      "margin-mobile": "16px",
+                      "bento-gap": "16px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "data-tabular": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "status-label": [
+                              "Geist"
+                      ],
+                      "hero-display": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-tabular": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "status-label": [
+                              "13px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "hero-display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+        }
+        .bento-card {
+            background-color: theme('colors.surface-white');
+            border: 1px solid theme('colors.border-subtle');
+            border-radius: theme('borderRadius.xl');
+            padding: theme('spacing.card-padding');
+            transition: all 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            box-shadow: 0px 10px 15px rgba(15, 23, 42, 0.08);
+            transform: translateY(-2px);
+        }
+        .bento-grid {
+            display: grid;
+            gap: theme('spacing.bento-gap');
+        }
+        /* Custom Scrollbar for Filters */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: theme('colors.surface-variant');
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-surface antialiased pt-20 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 border-b border-border-subtle dark:border-outline-variant shadow-sm backdrop-blur-xl">
+<div class="flex justify-between items-center px-margin-desktop h-20 max-w-7xl mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">
+                    MediBridge
+                </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Hospitals</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Doctors</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors pb-1" href="#">Pharmacy</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Orders</a>
+</nav>
+</div>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4">
+<!-- Search Bar -->
+<div class="hidden md:flex relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-tertiary text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-white border border-border-subtle rounded-full text-body-md font-body-md w-64 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all group-hover:shadow-sm" placeholder="Search medicines..." type="text"/>
+</div>
+<!-- Icon Actions -->
+<div class="flex items-center gap-2">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-alert-rose rounded-full"></span>
+</button>
+<button aria-label="Location" class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">location_on</span>
+</button>
+<button aria-label="Cart" class="p-2 text-on-surface-variant hover:text-primary transition-colors relative ml-2">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary-container text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+</button>
+</div>
+<!-- Primary Action -->
+<button class="hidden lg:block px-4 py-2 border border-[#0F172A] text-[#0F172A] rounded-lg font-body-md text-body-md hover:bg-surface-container transition-colors ml-4">
+                    Switch Portal
+                </button>
+<!-- Profile Avatar -->
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover border border-border-subtle ml-2" data-alt="A small, professional headshot of a female doctor wearing a white coat, isolated on a light gray background. Well-lit, high resolution, modern clinical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXct09g0aMslLtflGK3oit9P20JXJf1Doe-tHK77glecQtGHBB0bN-TXn05wnKBxNFHlH-48iyiQrtHPYY02l2UbkSS4AJwYyyPZeqAChHCJ0m7RwwqeYl9-lhwifowGvebgyPZhC0x-0TS_47QSBBjsS4exBt6y0aXeSlscdJXnSAR5Ko41EXCFzPFx7YB1GS_UICMqH9g_PCPkp3jukxsjXsu-J3OQZYmbxb_zLGmJhIoUv5XcW2"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-desktop py-8 flex gap-gutter">
+<!-- Sidebar Filters (Desktop) -->
+<aside class="hidden md:block w-64 flex-shrink-0">
+<div class="sticky top-28 bento-card p-6 h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Filters</h2>
+<div class="space-y-6">
+<!-- Categories -->
+<div>
+<h3 class="font-label-caps text-label-caps text-tertiary mb-3 uppercase">Categories</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">All Medicines</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Respiratory</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Cardiac Care</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Diabetes</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Pain Relief</span>
+</label>
+</div>
+</div>
+<hr class="border-border-subtle"/>
+<!-- Prescription -->
+<div>
+<h3 class="font-label-caps text-label-caps text-tertiary mb-3 uppercase">Prescription</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Required (Rx)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary-container border-border-subtle rounded focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Over-the-Counter (OTC)</span>
+</label>
+</div>
+</div>
+<hr class="border-border-subtle"/>
+<!-- Price Range -->
+<div>
+<h3 class="font-label-caps text-label-caps text-tertiary mb-3 uppercase">Price Range</h3>
+<input class="w-full h-1 bg-surface-container rounded-lg appearance-none cursor-pointer accent-primary-container" max="500" min="0" type="range"/>
+<div class="flex justify-between mt-2 font-data-tabular text-data-tabular text-tertiary">
+<span>$0</span>
+<span>$500+</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-1">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Pharmacy Catalog</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Showing 124 results for "All Medicines"</p>
+</div>
+<!-- Sort Dropdown -->
+<div class="hidden sm:flex items-center gap-2">
+<span class="font-body-md text-body-md text-tertiary">Sort by:</span>
+<select class="bg-surface-white border border-border-subtle rounded-lg px-3 py-1.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary-container">
+<option>Recommended</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>A-Z</option>
+</select>
+</div>
+</div>
+<!-- Bento Grid for Products -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-bento-gap">
+<!-- Product Card 1 (Rx) -->
+<div class="bento-card p-0 flex flex-col overflow-hidden relative group">
+<!-- Prescription Badge -->
+<div class="absolute top-3 right-3 bg-alert-rose/10 text-alert-rose font-status-label text-status-label px-2.5 py-1 rounded-full border border-alert-rose/20 z-10 flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">prescriptions</span> Rx Required
+                    </div>
+<div class="h-48 bg-surface-container-low relative flex items-center justify-center p-4">
+<img alt="Ventolin HFA" class="h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105" data-alt="A clean, studio-lit product shot of a white medicine bottle with a minimalist blue and teal label sitting on a reflective white surface. High-end pharmaceutical aesthetic, bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU5V_-4NQsrr9_bs_F2lMU5SrkPZddaH9GTI55qaxvnL9sLlsmdESkbmC1noi4kit7UtEmelGhpnfvBHKhtwnBqY-0grEr06HA0_yogXXwoWhk3yg5LOHKGw2mdWY6UkRjdsLFiHvaburwJeLZjp99jG_VC3GDTgqR8p5VlVALOg7YRXsdUlO_teJNTcT_B6LROydfjHzGRmpMTa5IVG2FRI--EtCzOmQI8pRI0c_BvPn01R7PWUWE"/>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="font-label-caps text-label-caps text-tertiary mb-1 uppercase tracking-wider">Respiratory</div>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-2 font-semibold">Ventolin HFA</h3>
+<p class="font-body-md text-sm text-on-surface-variant line-clamp-2 mb-4">Albuterol sulfate inhalation aerosol for relief of bronchospasm.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="font-data-tabular text-headline-md font-bold text-primary-container">$45.00</div>
+<button class="bg-primary-container hover:bg-primary-fixed text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shadow-sm">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 (OTC) -->
+<div class="bento-card p-0 flex flex-col overflow-hidden relative group">
+<div class="absolute top-3 right-3 bg-success-emerald/10 text-success-emerald font-status-label text-status-label px-2.5 py-1 rounded-full border border-success-emerald/20 z-10 flex items-center gap-1 backdrop-blur-sm">
+                        OTC
+                    </div>
+<div class="h-48 bg-surface-container-low relative flex items-center justify-center p-4">
+<img alt="Zyrtec Allergy" class="h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105" data-alt="A professional product photo of a rectangular blister pack box for allergy medication, clean white and bright green packaging. Shot on a white background with soft shadows, sterile and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK78afN9cH_evXIH6vue4SkKVFE_BzypTDPt6DxODybGbAQmZ2TwlPZ-Gf_nCE5AO_FEJYCtzf1EG-c_aO57_ug_50pmV8A-4VLqC69Kjd4gRJ_nod3vYiptJidTKN01fzt068LEvyTv0FXx9Re6ch4920WKmO1x0IYK5e7Pv1gIFnH5VYya6R7Tn9RXY27ekpNxCFPR7GU0RaHKPqrf-LwDN873AoXICbeO5Q2Ab9NF5nUgEFEMKe"/>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="font-label-caps text-label-caps text-tertiary mb-1 uppercase tracking-wider">Allergy Relief</div>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-2 font-semibold">Zyrtec 24hr</h3>
+<p class="font-body-md text-sm text-on-surface-variant line-clamp-2 mb-4">Cetirizine HCl antihistamine tablets for indoor/outdoor allergy relief.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="font-data-tabular text-headline-md font-bold text-primary-container">$18.99</div>
+<button class="bg-primary-container hover:bg-primary-fixed text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shadow-sm">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 (Rx) -->
+<div class="bento-card p-0 flex flex-col overflow-hidden relative group">
+<div class="absolute top-3 right-3 bg-alert-rose/10 text-alert-rose font-status-label text-status-label px-2.5 py-1 rounded-full border border-alert-rose/20 z-10 flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">prescriptions</span> Rx Required
+                    </div>
+<div class="h-48 bg-surface-container-low relative flex items-center justify-center p-4">
+<img alt="Lisinopril" class="h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105" data-alt="A sleek, modern product shot of a small cardiovascular medication blister pack next to its minimalist white box. The setting is clean, sterile, and brightly lit to emphasize medical precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDgvfhl31kNPYbiwX-PoK0Mykzbm4SzSDLYmiMMEWzAvVL_2ERDlfgylPDHeD3ilBPst72n03frv6OY92J5a_LvjufcvuRrTnGClEjXI4VrP72nv9t24cfcyQbCmshmhAmugOg3JKsD-N-LpA77YdSf24_tQ2dzndtAa0sRu3f97X9pCKcQ-hwJ03826Tkeu-RBkk7Lm-sowR8DdDO8vt5BiSRuZXPtLlfNkdix3F4sv1Xelueog9o"/>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="font-label-caps text-label-caps text-tertiary mb-1 uppercase tracking-wider">Cardiac Care</div>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-2 font-semibold">Lisinopril 10mg</h3>
+<p class="font-body-md text-sm text-on-surface-variant line-clamp-2 mb-4">ACE inhibitor used to treat high blood pressure and heart failure.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="font-data-tabular text-headline-md font-bold text-primary-container">$12.50</div>
+<button class="bg-primary-container hover:bg-primary-fixed text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shadow-sm">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 (OTC) -->
+<div class="bento-card p-0 flex flex-col overflow-hidden relative group">
+<div class="absolute top-3 right-3 bg-success-emerald/10 text-success-emerald font-status-label text-status-label px-2.5 py-1 rounded-full border border-success-emerald/20 z-10 flex items-center gap-1 backdrop-blur-sm">
+                        OTC
+                    </div>
+<div class="h-48 bg-surface-container-low relative flex items-center justify-center p-4">
+<img alt="Ibuprofen" class="h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105" data-alt="A clean, studio-lit shot of a generic pain relief tablet bottle. White plastic bottle with a simple, modern label. High-key lighting, sterile pharmaceutical environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKvDztrYMmuYwxcwNg2pfi-QIHHwcrTDIZuW2xg3hjEDdgua5A5kemO_fGnR5x5f600xiXVZsH5HiKRXcaMS6APCNNdO3CRPVNjPTHsak63gExrszn7YFR1KqyEto-dO6E-ksYpNHHjWUOD4_HUbUr-7XeDpSFpYxXgiErEablP4bvMFqEww-fg6IPM0szkcBMOAIlWO5crMgfrqgde-5CtrIFb9MD2nCJlL_hdafy8LSbqA1GmLap"/>
+</div>
+<div class="p-5 flex flex-col flex-grow">
+<div class="font-label-caps text-label-caps text-tertiary mb-1 uppercase tracking-wider">Pain Relief</div>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-2 font-semibold">Ibuprofen 200mg</h3>
+<p class="font-body-md text-sm text-on-surface-variant line-clamp-2 mb-4">NSAID for temporary relief of minor aches and pains.</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="font-data-tabular text-headline-md font-bold text-primary-container">$8.25</div>
+<button class="bg-primary-container hover:bg-primary-fixed text-white w-10 h-10 rounded-lg flex items-center justify-center transition-colors shadow-sm">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More -->
+<div class="mt-8 flex justify-center">
+<button class="px-6 py-2.5 bg-surface-white border border-border-subtle text-on-surface font-body-md text-body-md rounded-lg hover:bg-surface-container transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">refresh</span> Load More Products
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto w-full bg-surface-container dark:bg-inverse-surface border-t border-border-subtle dark:border-outline-variant py-8">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-7xl mx-auto gap-4">
+<span class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant">© 2024 MediBridge Healthcare. All rights reserved.</span>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Help Center</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Contact Us</a>
+</nav>
+</div>
+</footer>
+</body></html>

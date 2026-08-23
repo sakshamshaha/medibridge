@@ -1,0 +1,21 @@
+{
+  "name": "@eforma/database",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "@types/node": "^24.0.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}

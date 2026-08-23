@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PCNL Surgery at Memorial Health Center | MediBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#005047",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#5c647a",
+                      "secondary-container": "#dae2fd",
+                      "secondary-fixed": "#dae2fd",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-dim": "#d8dadc",
+                      "surface": "#f7f9fb",
+                      "on-primary-container": "#00574d",
+                      "on-primary-fixed": "#00201c",
+                      "surface-container-highest": "#e0e3e5",
+                      "secondary": "#565e74",
+                      "success-emerald": "#10B981",
+                      "surface-bright": "#f7f9fb",
+                      "on-surface-variant": "#3c4a46",
+                      "primary": "#006b5f",
+                      "on-error-container": "#93000a",
+                      "background": "#f7f9fb",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "alert-rose": "#F43F5E",
+                      "primary-fixed-dim": "#3cddc7",
+                      "error-container": "#ffdad6",
+                      "outline-variant": "#bacac5",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#505f76",
+                      "border-subtle": "#E2E8F0",
+                      "outline": "#6b7a76",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "surface-container": "#eceef0",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "inverse-primary": "#3cddc7",
+                      "primary-fixed": "#62fae3",
+                      "on-error": "#ffffff",
+                      "surface-white": "#FFFFFF",
+                      "on-secondary-fixed": "#131b2e",
+                      "surface-tint": "#006b5f",
+                      "warning-amber": "#F59E0B",
+                      "tertiary-fixed": "#d3e4fe",
+                      "primary-container": "#2dd4bf",
+                      "on-tertiary-container": "#3e4e63",
+                      "tertiary-container": "#afbfd9",
+                      "surface-container-low": "#f2f4f6",
+                      "on-surface": "#191c1e",
+                      "surface-container-high": "#e6e8ea",
+                      "error": "#ba1a1a",
+                      "surface-variant": "#e0e3e5",
+                      "on-background": "#191c1e",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "inverse-surface": "#2d3133",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "card-padding": "24px",
+                      "bento-gap": "16px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "gutter": "24px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "hero-display": [
+                              "Geist"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "data-tabular": [
+                              "Inter"
+                      ],
+                      "status-label": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "hero-display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-tabular": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "status-label": [
+                              "13px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .bento-card {
+            background-color: var(--tw-colors-surface-white, #FFFFFF);
+            border: 1px solid var(--tw-colors-border-subtle, #E2E8F0);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover {
+            box-shadow: 0px 10px 15px rgba(15, 23, 42, 0.04);
+            transform: translateY(-2px);
+        }
+        
+        /* Expandable section styling */
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .expand-toggle:checked ~ .expand-content {
+            max-height: 500px; /* Arbitrary large value */
+        }
+        .expand-toggle:checked ~ label .expand-icon {
+            transform: rotate(180deg);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- Top Navigation (Shared Component) -->
+<nav class="sticky top-0 z-50 flex items-center justify-between px-margin-desktop py-4 w-full max-w-[1440px] mx-auto bg-surface/80 backdrop-blur-xl border-b border-border-subtle shadow-sm">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary" href="#">
+                MediBridge
+            </a>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps uppercase" href="#">Hospitals</a>
+<a class="text-secondary hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Medicines</a>
+<a class="text-secondary hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Consultations</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center gap-4 mr-4">
+<button class="text-secondary hover:bg-surface-container-low rounded-lg p-2 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</button>
+<button class="text-secondary hover:bg-surface-container-low rounded-lg p-2 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="text-secondary hover:bg-surface-container-low rounded-lg p-2 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+<button class="text-primary font-label-caps text-label-caps uppercase hover:bg-surface-container-low px-4 py-2 rounded-lg transition-all duration-200 active:scale-95 hidden sm:block">
+                Switch to Retailer
+            </button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-border-subtle overflow-hidden cursor-pointer shrink-0">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a user acting as a profile avatar, set against a clean, light-mode background. The lighting is soft and flattering, casting subtle shadows to add depth. The overall aesthetic is modern, clean, and trustworthy, suitable for a premium healthcare platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOpYZHKEX4GIBnDlX3YmQ9DJjMN_Jc5pCgSv5bI66GFk4qsLaBuSGnbWzhN7Aan55jZEBn_Wl_PJxkKrlvcFHb4RoVqnfGkbWRmOlmPtLunwcHfPwFLqpYGOcjU1_i6A_KnzWVt4ga5FGIr2soalTnDbYVMPGegje3cK7KEIp0E4s89aH6O5mlZ7JK16R0EzE-CvHewH90GOsbbsf_N_5-D-6jB8OYV_1Xpl_E-3XHTHtn_gJpx31C"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-8 flex flex-col lg:flex-row gap-bento-gap relative">
+<!-- Left Content Area (Grid) -->
+<div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-bento-gap self-start">
+<!-- Page Header -->
+<div class="md:col-span-12 mb-4">
+<p class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider mb-2">Procedure Details</p>
+<h1 class="font-hero-display text-hero-display text-on-surface mb-2">PCNL Surgery</h1>
+<p class="font-body-lg text-body-lg text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">domain</span>
+                    Memorial Health Center
+                </p>
+</div>
+<!-- 1. Doctor Section (4 cols) -->
+<div class="bento-card md:col-span-4 flex flex-col">
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-4">Lead Surgeon</p>
+<div class="flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-container">
+<img alt="Dr. Marcus Chen" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male doctor with Asian descent, wearing a white coat and stethoscope, set against a pristine white clinic background. The lighting is bright and authoritative, reflecting a high-end medical environment. The portrait exudes confidence, expertise, and approachability in a light-mode SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0htWMfXmPVdXYUyrUvzxaGWbB3ksvkHtZ9lIxEgyCdiH48zpCrbbVM6BocYlyAtG7ZoAuB50dSLPkcTQi-zul2ibKS1hFDFpie76Vxi7iq0ahHqog9IEzutCK4b3_5W6w3xlWG0ba6p-Z-JB7feHsIFkgWEhDeJXCaF9HLoVVBcWZysF2JDtNV9-og92mBjYXkTjWcgMbKXru4Enx2asyQyAvlGECv8Zn50hx4XvvW6paFuldAx20"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Dr. Marcus Chen</h3>
+<p class="font-body-md text-body-md text-secondary mt-1">Interventional Cardiologist</p>
+<div class="mt-6 w-full flex justify-around border-t border-border-subtle pt-4">
+<div>
+<p class="font-headline-md text-headline-md text-primary">15+</p>
+<p class="font-label-caps text-label-caps text-tertiary uppercase">Years Exp</p>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary">500+</p>
+<p class="font-label-caps text-label-caps text-tertiary uppercase">Procedures</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Hospital Info & 3. Licenses (8 cols) -->
+<div class="bento-card md:col-span-8 flex flex-col gap-6">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-1">Facility Overview</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Memorial Health Center</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">Private Healthcare Facility</p>
+</div>
+<span class="bg-success-emerald/10 text-success-emerald px-3 py-1 rounded-full font-status-label text-status-label flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span> High Success Rate (94%)
+                        </span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+<div class="p-4 bg-surface-container-low rounded-lg border border-border-subtle">
+<span class="material-symbols-outlined text-primary mb-2">medical_services</span>
+<p class="font-headline-md text-headline-md">250+</p>
+<p class="font-body-md text-body-md text-secondary text-sm">PCNL Procedures</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-border-subtle">
+<span class="material-symbols-outlined text-primary mb-2">star</span>
+<p class="font-headline-md text-headline-md">4.8/5</p>
+<p class="font-body-md text-body-md text-secondary text-sm">Patient Rating</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-border-subtle">
+<span class="material-symbols-outlined text-primary mb-2">hotel</span>
+<p class="font-headline-md text-headline-md">150</p>
+<p class="font-body-md text-body-md text-secondary text-sm">Beds</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-border-subtle">
+<span class="material-symbols-outlined text-primary mb-2">emergency</span>
+<p class="font-headline-md text-headline-md">24/7</p>
+<p class="font-body-md text-body-md text-secondary text-sm">Emergency</p>
+</div>
+</div>
+</div>
+<!-- Licenses -->
+<div class="border-t border-border-subtle pt-6">
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-4">Certifications &amp; Licenses</p>
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-2 px-3 py-2 bg-surface border border-border-subtle rounded-lg">
+<span class="material-symbols-outlined text-primary">bloodtype</span>
+<span class="font-data-tabular text-data-tabular">Blood Bank License</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface border border-border-subtle rounded-lg">
+<span class="material-symbols-outlined text-primary">policy</span>
+<span class="font-data-tabular text-data-tabular">DHA Regulatory Standard</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface border border-border-subtle rounded-lg">
+<span class="material-symbols-outlined text-primary">workspace_premium</span>
+<span class="font-data-tabular text-data-tabular">NABH Accreditation</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Photos Gallery (12 cols) -->
+<div class="bento-card md:col-span-12">
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-4">Facility Gallery</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden aspect-video md:aspect-auto">
+<div class="w-full h-full min-h-[300px] bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="A brightly lit, state-of-the-art modern operating theater in a premium private hospital. High-tech surgical equipment and monitors are visible, bathed in cool, sterile white and soft teal lighting. The image conveys cleanliness, precision, and advanced medical capability in a bright, light-mode style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgKGS82wle4ep8unCKI3OXLMWq7bJHAMbx7hY1fKNrAUqmrr2lV8c701BPIw_CSBiPktltmOb7orY_xTNDjxkdJLgzLxeKyw95fJvLfb8jKuWUGvkXz36EW6roMwphaJlAcfemJIPAxOhxIwhzRESFH8RMoKN6N7GXwEnWPFQnujqg9CMJ4flir8mZWAwKFxltSvF7LYF3P9omTofkY4pS-5SAiYPHdlbAqTrg3n03jEzePBV_OAqN')"></div>
+</div>
+<div class="rounded-xl overflow-hidden aspect-square">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="A luxurious, modern private patient room in a high-end hospital. It features a comfortable mechanical bed, warm wood accents, large windows letting in bright natural light, and a minimalist design. The atmosphere is calming, clean, and resembles a premium hotel room, aligning with a sophisticated healthcare aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4kQgQqdWrGGFKnuKf2VM1t7D-ueDacbhHEqPvQ5jbuMK30OolHMtuOCGYFhEF3OBNXwJMM-37vVBDbvgiUarjA79169_DFh_HUd1UtJiJPLZWAhy0V4m3Sl3FnOgfrIlGtwFoH3p0Jaky99I2bWgFNiq5FfBpVDm5oOxGBIP5kdaoEo732cpYIKYNnpKa6sHO5zAOUQnZl28WEMCazjfF0roAdeFkHvwoEYhgIeh7FV6lh5t8CFAZ')"></div>
+</div>
+<div class="rounded-xl overflow-hidden aspect-square">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="The sleek, contemporary exterior of Memorial Health Center during daytime. The building features large glass facades reflecting the blue sky, surrounded by manicured green landscaping. The lighting is bright and sunny, emphasizing a modern, trustworthy, and premium healthcare institution." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqNgjJ0UPXGcs_Ng-hpDxdl2rFOze6iBDrqXBxfCD5oF8Dz4M8peNPCKMFo0qpmAoUaIbwoAF2nkDn9G0QkYW4zpMJ46oU-h4ghenJvCcq4X5RKPOTs460yUZjcrjxRlGGJnT7kadpeFuXhLkFdZqacSkCmtUtM8XSWFTBxydKfpNWH4R7evHyxZajZ4Dtboz8p3MCLoLYMJWCBP906yKr2maB0-iNE08Tvs3Gu0Yhe7jsoxP_-jP0')"></div>
+</div>
+<div class="rounded-xl overflow-hidden aspect-square">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="A clean, minimalist hospital reception area with a modern desk, subtle teal branding accents, and comfortable waiting chairs. The space is illuminated by soft, recessed lighting, creating a welcoming and efficient atmosphere typical of a premium medical SaaS platform's physical counterpart." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfgqaAEM3uCaNVc9-LoJG3ReP1Ad0-bG7TyFT9Q4j0kwcWB8AIntGbfqnw9kFFHFov4UFBd5KM1T8AvD40CCAhss_OsX6_C_oumpDgrKFU5Olg9MP451UmWq8n9LAC1yVPvBe4BgB7hO0RXmUp9vwX-t5A3iQaaW4Rc53YefPG6XblZlnoh8AFBbVQ00Ozc64EqYMVP8hovFx5RR76XB7ftla9svx6agYTr7NqZkeruRJqqOvsZHK5')"></div>
+</div>
+<div class="rounded-xl overflow-hidden aspect-square">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Close-up of advanced medical monitoring equipment displaying vital signs in a sterile hospital setting. The screen glows softly against a light background, highlighting technical precision and modern healthcare capabilities. The mood is analytical yet reassuring." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClhVj700NtVlQNEFD1dIoo6Tsm0pAyX_qn4zWVSFDZ3CJ4Zx3xTn2B8C7smh8rXtg5km7lq-DcuvD_fJAHpaSFqk_lGSi9i5iMzr84aTCzT7KN7KtiSssbgnGZZDtSVfetNkkB4sHEC1P3qECEoBCm_qAKjZj1IRQ1s8w8ahVoHK7L_wyxwCr4tA0LJmyYX7p59V12nopUF9vB-5RraOqvXJtHr9UwufgcPXSbz6cZ4rgzyqNKzsLi')"></div>
+</div>
+</div>
+</div>
+<!-- 5. Directions (6 cols) -->
+<div class="bento-card md:col-span-6 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<p class="font-label-caps text-label-caps text-tertiary uppercase">Location</p>
+<span class="font-data-tabular text-data-tabular text-secondary">3.2 miles away</span>
+</div>
+<div class="rounded-xl overflow-hidden w-full h-48 mb-4 border border-border-subtle relative group">
+<img class="w-full h-full object-cover" data-location="New York" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcUXPnXJkAXusSUTY_IeKJUzuHim8KvL7Ygzow9dlytTjjUllScG48VutikRfBV6KHRIRHOEIzcIzBOR_FcBFcscHPF9RWMqYL7s3ohhb9SkVm3RiyyRA54O5VUCqZgr83qVD1-K3uxVAfFG2ttITfhfeFh8h3DJWP-teNM94JajGFF90082_s_EChuxb_pRDs-jWwK4OFlqidXmTMRg-diFrPwEAuMQYqqgmNbV7d9clZA1QTWqy5"/>
+<div class="absolute inset-0 bg-on-surface/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary drop-shadow-md">
+<span class="material-symbols-outlined text-4xl" data-weight="fill">location_on</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-1">123 Healthway Drive, Medical District</p>
+<p class="font-body-md text-body-md text-secondary text-sm mb-4">Metro City, NY 10001</p>
+<button class="w-full py-2 px-4 border border-primary text-primary hover:bg-primary/5 rounded-lg font-data-tabular text-data-tabular transition-colors flex items-center justify-center gap-2 mt-auto">
+<span class="material-symbols-outlined text-sm">directions</span> Get Directions
+                </button>
+</div>
+<!-- 7. Insurance Accepted (6 cols) -->
+<div class="bento-card md:col-span-6">
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-4">Insurance Accepted</p>
+<p class="font-body-md text-body-md text-secondary text-sm mb-4">This facility accepts most major insurance networks. Co-pays may vary based on your plan.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-16 bg-surface border border-border-subtle rounded-lg flex items-center justify-center grayscale hover:grayscale-0 transition-all cursor-default">
+<span class="font-headline-md text-headline-md text-on-surface-variant font-bold">BlueCross</span>
+</div>
+<div class="h-16 bg-surface border border-border-subtle rounded-lg flex items-center justify-center grayscale hover:grayscale-0 transition-all cursor-default">
+<span class="font-headline-md text-headline-md text-on-surface-variant font-bold">Aetna</span>
+</div>
+<div class="h-16 bg-surface border border-border-subtle rounded-lg flex items-center justify-center grayscale hover:grayscale-0 transition-all cursor-default">
+<span class="font-headline-md text-headline-md text-on-surface-variant font-bold">Cigna</span>
+</div>
+<div class="h-16 bg-surface border border-border-subtle rounded-lg flex items-center justify-center grayscale hover:grayscale-0 transition-all cursor-default text-center px-2">
+<span class="font-data-tabular text-data-tabular text-on-surface-variant font-bold">PMJAY / Ayushman Bharat</span>
+</div>
+</div>
+</div>
+<!-- 6. Expenses Breakdown (12 cols) -->
+<div class="bento-card md:col-span-12">
+<div class="flex items-center justify-between mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-1">Cost Estimation</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">Expenses Breakdown</h3>
+</div>
+<span class="bg-warning-amber/10 text-warning-amber px-3 py-1 rounded-full font-status-label text-status-label flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">info</span> Estimates Only
+                    </span>
+</div>
+<div class="space-y-6">
+<!-- Room Tiers -->
+<div>
+<h4 class="font-data-tabular text-data-tabular font-bold text-on-surface mb-3 border-b border-border-subtle pb-2">Room Tiers (Per Day)</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="p-4 border border-border-subtle rounded-lg hover:border-primary/50 transition-colors cursor-pointer group">
+<p class="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">General Ward</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-2">$150</p>
+<p class="font-body-md text-body-md text-secondary text-sm">Multi-bed occupancy</p>
+</div>
+<div class="p-4 border border-primary bg-primary/5 rounded-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary text-white text-xs px-2 py-1 rounded-bl-lg font-label-caps">POPULAR</div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Semi-Private</p>
+<p class="font-headline-md text-headline-md text-primary mt-2">$300</p>
+<p class="font-body-md text-body-md text-secondary text-sm">Twin sharing</p>
+</div>
+<div class="p-4 border border-border-subtle rounded-lg hover:border-primary/50 transition-colors cursor-pointer group">
+<p class="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors">Private Suite</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-2">$500</p>
+<p class="font-body-md text-body-md text-secondary text-sm">Single occupancy + attendee</p>
+</div>
+</div>
+</div>
+<!-- Itemized Consumables (Expandable) -->
+<div class="border border-border-subtle rounded-lg bg-surface">
+<input class="expand-toggle hidden" id="expand-consumables" type="checkbox"/>
+<label class="flex justify-between items-center p-4 cursor-pointer hover:bg-surface-container-low transition-colors rounded-lg" for="expand-consumables">
+<span class="font-data-tabular text-data-tabular font-bold text-on-surface">Itemized Consumables &amp; Equipment</span>
+<span class="material-symbols-outlined expand-icon text-secondary transition-transform duration-300">expand_more</span>
+</label>
+<div class="expand-content px-4 pb-4">
+<div class="pt-2 border-t border-border-subtle space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-secondary">Cannula &amp; IV Sets (approx. 5 units)</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">$45.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-secondary">Specific Anesthesia Injections</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">$350.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-secondary">Ureteral Stents (standard)</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">$450.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-secondary">Guide Wires &amp; Catheters</span>
+<span class="font-data-tabular text-data-tabular text-on-surface">$120.00</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-border-subtle border-dashed">
+<span class="font-data-tabular text-data-tabular font-medium text-on-surface">Subtotal (Consumables)</span>
+<span class="font-data-tabular text-data-tabular font-medium text-on-surface">~$965.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sticky Summary Panel (approx 4 cols space) -->
+<div class="w-full lg:w-[360px] shrink-0">
+<div class="glass-panel rounded-xl p-6 sticky top-28 flex flex-col shadow-lg shadow-on-surface/5">
+<p class="font-label-caps text-label-caps text-tertiary uppercase mb-2">Estimated Total</p>
+<div class="flex items-end gap-2 mb-2">
+<h2 class="font-hero-display text-hero-display text-primary">$4k - $6k</h2>
+</div>
+<p class="font-body-md text-body-md text-secondary text-sm border-b border-border-subtle pb-4 mb-4">
+                    Final cost depends on room tier selection, exact duration of stay, and specific consumables used during surgery.
+                </p>
+<div class="space-y-3 mb-6">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-emerald text-sm mt-1">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Surgeon &amp; Anesthetist fees included</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-emerald text-sm mt-1">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Standard OT charges included</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-warning-amber text-sm mt-1">warning</span>
+<span class="font-body-md text-body-md text-on-surface text-sm">Pre-op diagnostics billed separately</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-fixed font-headline-md text-headline-md py-4 rounded-xl hover:bg-primary hover:text-white transition-all duration-200 active:scale-95 shadow-md shadow-primary-container/20">
+                    Book Consultation
+                </button>
+<p class="text-center font-label-caps text-label-caps text-tertiary mt-4">
+                    No payment required to book.
+                </p>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full mt-auto py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-start gap-gutter max-w-[1440px] mx-auto bg-surface-container-low border-t border-border-subtle">
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">MediBridge</span>
+<p class="font-body-md text-body-md text-secondary max-w-sm">
+                © 2024 MediBridge Healthcare. Licensed under DHA/MOH Regulatory Standards.
+            </p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary hover:underline transition-all duration-200" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary hover:underline transition-all duration-200" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary hover:underline transition-all duration-200" href="#">Regulatory Licenses</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary hover:underline transition-all duration-200" href="#">Help Center</a>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary hover:underline transition-all duration-200" href="#">Contact Security</a>
+</div>
+</footer>
+</body></html>

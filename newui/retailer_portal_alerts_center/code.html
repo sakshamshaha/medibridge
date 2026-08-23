@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBridge Retail - Alerts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#6b7a76",
+                      "surface": "#f7f9fb",
+                      "surface-container-highest": "#e0e3e5",
+                      "primary-fixed-dim": "#3cddc7",
+                      "secondary-fixed": "#dae2fd",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "tertiary": "#505f76",
+                      "background": "#f7f9fb",
+                      "primary-container": "#2dd4bf",
+                      "error": "#ba1a1a",
+                      "warning-amber": "#F59E0B",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e0e3e5",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#5c647a",
+                      "surface-tint": "#006b5f",
+                      "success-emerald": "#10B981",
+                      "on-primary-fixed": "#00201c",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "surface-container": "#eceef0",
+                      "surface-container-high": "#e6e8ea",
+                      "on-secondary-fixed": "#131b2e",
+                      "tertiary-fixed": "#d3e4fe",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "surface-white": "#FFFFFF",
+                      "surface-dim": "#d8dadc",
+                      "surface-container-low": "#f2f4f6",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-primary-container": "#00574d",
+                      "inverse-surface": "#2d3133",
+                      "secondary": "#565e74",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "on-primary-fixed-variant": "#005047",
+                      "alert-rose": "#F43F5E",
+                      "outline-variant": "#bacac5",
+                      "tertiary-container": "#afbfd9",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#62fae3",
+                      "on-tertiary-container": "#3e4e63",
+                      "primary": "#006b5f",
+                      "secondary-container": "#dae2fd",
+                      "surface-bright": "#f7f9fb",
+                      "border-subtle": "#E2E8F0",
+                      "on-surface-variant": "#3c4a46",
+                      "on-background": "#191c1e",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#3cddc7",
+                      "on-surface": "#191c1e",
+                      "on-error": "#ffffff",
+                      
+                      // Theme Overrides for Deep Navy Dark Theme requested by user, mapped to existing tokens where possible or adding semantic ones for clarity in this specific design if standard ones don't match the prompt's explicit deep navy dark theme requirement.
+                      "navy-900": "#0A1128", // Deepest navy for background
+                      "navy-800": "#121E42", // Slightly lighter for cards
+                      "navy-700": "#1C2D5A", // Even lighter for borders/hovers
+                      "neon-teal": "#2DD4BF",
+                      "neon-rose": "#F43F5E",
+                      "neon-amber": "#F59E0B",
+                      "neon-emerald": "#10B981"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "bento-gap": "16px",
+                      "margin-mobile": "16px",
+                      "card-padding": "24px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "status-label": ["Geist"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "body-lg": ["Inter"],
+                      "label-caps": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "data-tabular": ["Inter"],
+                      "hero-display": ["Geist"]
+              },
+              "fontSize": {
+                      "status-label": ["13px", {"lineHeight": "16px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "hero-display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              },
+              "backgroundImage": {
+                  'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+                  'critical-gradient': 'linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(10, 17, 40, 0) 100%)',
+              },
+              "boxShadow": {
+                  'glow-rose': '0 0 20px rgba(244, 63, 94, 0.15)',
+                  'glow-amber': '0 0 20px rgba(245, 158, 11, 0.1)',
+                  'glow-teal': '0 0 20px rgba(45, 212, 191, 0.1)',
+                  'glass': '0 4px 30px rgba(0, 0, 0, 0.5)',
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Ambient Glow Effects */
+        .ambient-glow-rose { position: relative; }
+        .ambient-glow-rose::before {
+            content: ''; position: absolute; inset: -1px; background: linear-gradient(to bottom right, #F43F5E, transparent);
+            border-radius: inherit; z-index: -1; opacity: 0.3; filter: blur(8px);
+        }
+        .glass-panel {
+            background: rgba(18, 30, 66, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .urgent-pulse {
+            animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(244, 63, 94, 0.3); }
+            50% { border-color: rgba(244, 63, 94, 0.8); }
+        }
+        body { background-color: #0A1128; color: #FFFFFF; } /* Fallback for custom dark theme */
+    </style>
+</head>
+<body class="bg-navy-900 text-white min-h-screen flex antialiased overflow-x-hidden selection:bg-neon-teal selection:text-navy-900">
+<!-- Ambient Background Lighting -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-neon-rose opacity-[0.03] blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full bg-neon-teal opacity-[0.03] blur-[120px]"></div>
+</div>
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface-white/80 dark:bg-navy-800/80 backdrop-blur-xl font-headline-md text-headline-md font-body-md text-body-md font-label-caps text-label-caps docked left-0 h-full w-72 border-r border-outline-variant/30 dark:border-navy-700 shadow-sm dark:shadow-none flex flex-col h-screen fixed left-0 top-0 z-50 py-6 hidden md:flex transition-all duration-300">
+<!-- Brand -->
+<div class="px-8 mb-10 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-teal to-primary flex items-center justify-center shadow-[0_0_15px_rgba(45,212,191,0.3)]">
+<span class="material-symbols-outlined text-white text-[18px]">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-white leading-none">MediBridge Retail</h1>
+<p class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim mt-1">Enterprise Portal</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">barcode_scanner</span>
+<span class="font-body-md text-body-md">Billing/Scanner</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">inventory_2</span>
+<span class="font-body-md text-body-md">Stock Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">monitoring</span>
+<span class="font-body-md text-body-md">AI Sales Monitor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">hub</span>
+<span class="font-body-md text-body-md">Demand Node</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-white font-bold bg-secondary-container/20 dark:bg-navy-700/80 border-l-4 border-primary dark:border-neon-teal scale-[0.98] transition-transform duration-150 shadow-[inset_0_0_20px_rgba(45,212,191,0.05)] relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-gradient-to-r from-neon-teal/10 to-transparent"></div>
+<span class="material-symbols-outlined relative z-10" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+<span class="font-body-md text-body-md relative z-10">Alerts</span>
+<span class="ml-auto bg-neon-rose text-white text-[10px] font-bold px-2 py-0.5 rounded-full relative z-10">12</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="px-6 mt-8">
+<button class="w-full bg-neon-teal hover:bg-primary-fixed text-navy-900 font-body-md text-body-md font-semibold py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(45,212,191,0.2)] hover:shadow-[0_0_25px_rgba(45,212,191,0.4)]">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Prescription
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="px-4 mt-8 pt-4 border-t border-outline-variant/30 dark:border-navy-700 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:rotate-45 transition-transform duration-300">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-white hover:bg-secondary-container/50 dark:hover:bg-navy-700/50 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<!-- User Profile Snippet -->
+<div class="mt-4 px-4 py-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-navy-700 flex items-center justify-center overflow-hidden border border-navy-600">
+<img alt="Pharmacy Manager Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy0_uGAOPZ2DfHxlQsdCsFhDeDLN6yRVxpUuTSsSKDqUL_cqiC7VLSvUac11KZwjtluO2DrHGKguYmY7Z3Inin1yVQ01BPyFzQlrneEiYOFNlWsm5MqUwbAPG8bJ_crmUua3_88Z7eYk8M93bIH4Riz-aBKC8Je2S6AkNv6XIeUx1RUKkJULvkh24UHQdXoBWgai5GdfgHFLJS8geg3_FZKoHq6HsHFCTj-t85hHaYSKWt-Rzh2HbM"/>
+</div>
+<div>
+<p class="font-body-md text-[13px] font-medium text-white leading-tight">Sarah Jenkins</p>
+<p class="font-label-caps text-[10px] text-secondary-fixed-dim">Store #402</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 flex flex-col min-h-screen relative z-10">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface/60 dark:bg-navy-900/60 backdrop-blur-md font-headline-md text-headline-md font-label-caps text-label-caps docked top-0 w-full border-b border-outline-variant/20 dark:border-navy-800 flat no shadows flex justify-between items-center h-16 px-4 md:px-margin-desktop sticky top-0 z-40 transition-all duration-300">
+<!-- Mobile Menu & Title -->
+<div class="flex items-center gap-4">
+<button class="md:hidden text-white hover:text-neon-teal transition-colors">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<div class="hidden">MediBridge Retail</div> <!-- Hidden by style_brand_logo -->
+<h2 class="font-headline-md text-headline-md text-white md:hidden">Alerts</h2>
+</div>
+<!-- Search (on_left in JSON, but visually makes sense centered/left-aligned in remaining space) -->
+<div class="flex-1 max-w-md ml-0 md:ml-8 hidden md:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary-fixed-dim group-focus-within:text-neon-teal transition-colors">search</span>
+<input class="w-full bg-navy-800/50 border border-navy-700 rounded-full py-2 pl-10 pr-4 font-body-md text-[14px] text-white placeholder-secondary-fixed-dim focus:outline-none focus:border-neon-teal focus:bg-navy-800 transition-all shadow-inner" placeholder="Search alerts, NDCs, or locations..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4 ml-auto">
+<button class="relative text-secondary-fixed-dim hover:text-white transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-neon-rose rounded-full border-2 border-navy-900"></span>
+</button>
+<button class="text-secondary-fixed-dim hover:text-white transition-colors opacity-80 hover:opacity-100 md:hidden">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-secondary-fixed-dim hover:text-white transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-[1440px] mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-hero-display text-hero-display text-white mb-2">Alerts Center</h1>
+<p class="font-body-lg text-body-lg text-secondary-fixed-dim max-w-2xl">Monitor and action operational anomalies across your retail network. Prioritize by urgency to maintain compliance and stock liquidity.</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full bg-white/10 text-white font-data-tabular text-data-tabular border border-white/20 hover:bg-white/20 transition-colors whitespace-nowrap">All (12)</button>
+<button class="px-4 py-1.5 rounded-full bg-neon-rose/10 text-neon-rose font-data-tabular text-data-tabular border border-neon-rose/30 hover:bg-neon-rose/20 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-1.5 h-1.5 rounded-full bg-neon-rose"></span> Urgent (3)
+                    </button>
+<button class="px-4 py-1.5 rounded-full bg-neon-amber/10 text-neon-amber font-data-tabular text-data-tabular border border-neon-amber/30 hover:bg-neon-amber/20 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-1.5 h-1.5 rounded-full bg-neon-amber"></span> Warning (5)
+                    </button>
+<button class="px-4 py-1.5 rounded-full bg-neon-teal/10 text-neon-teal font-data-tabular text-data-tabular border border-neon-teal/30 hover:bg-neon-teal/20 transition-colors flex items-center gap-1.5 whitespace-nowrap">
+<span class="w-1.5 h-1.5 rounded-full bg-neon-teal"></span> Info (4)
+                    </button>
+</div>
+</div>
+<!-- Single Most Critical Alert Banner (Level 2 Overlay style adapted for banner) -->
+<div class="mb-bento-gap ambient-glow-rose rounded-xl">
+<div class="glass-panel urgent-pulse rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 relative overflow-hidden bg-critical-gradient">
+<!-- Icon -->
+<div class="w-14 h-14 rounded-full bg-neon-rose/20 border border-neon-rose/50 flex items-center justify-center shrink-0 shadow-glow-rose z-10">
+<span class="material-symbols-outlined text-neon-rose text-[28px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<!-- Content -->
+<div class="flex-1 z-10">
+<div class="flex items-center gap-3 mb-2">
+<span class="font-status-label text-status-label text-neon-rose uppercase tracking-wider bg-neon-rose/10 px-2 py-0.5 rounded">Critical Incident</span>
+<span class="font-data-tabular text-[12px] text-secondary-fixed-dim">Just now</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-1 leading-tight">Temperature Excursion: Cold Storage Unit B</h2>
+<p class="font-body-md text-body-md text-secondary-fixed-dim">Sensor indicates temp dropped below 2°C for &gt;15 mins. Affects 42 NDCs (Insulin, Vaccines). Immediate inspection required to prevent spoilage.</p>
+</div>
+<!-- Action -->
+<div class="mt-4 md:mt-0 z-10 w-full md:w-auto flex flex-col gap-2">
+<button class="w-full md:w-auto px-6 py-3 bg-neon-rose hover:bg-alert-rose text-white font-body-md text-body-md font-semibold rounded-lg transition-colors shadow-glow-rose flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">thermostat</span>
+                            Initiate Protocol
+                        </button>
+<button class="w-full md:w-auto px-6 py-2 bg-transparent border border-white/20 hover:bg-white/5 text-white font-body-md text-[14px] rounded-lg transition-colors text-center">
+                            View Affected Inventory
+                        </button>
+</div>
+<!-- Decorative background element -->
+<span class="material-symbols-outlined absolute -right-10 -bottom-10 text-[200px] text-neon-rose opacity-5 rotate-12 pointer-events-none" style="font-variation-settings: 'FILL' 1;">ac_unit</span>
+</div>
+</div>
+<!-- Bento Grid for Feed -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
+<!-- Left Column: Primary Feed (8 cols on desktop) -->
+<div class="md:col-span-8 space-y-bento-gap">
+<h3 class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase tracking-widest mb-4">Recent Activity</h3>
+<!-- Alert Card: Warning (Near Expiry) -->
+<div class="glass-panel rounded-xl p-card-padding hover:-translate-y-1 transition-transform duration-300 group border-l-4 border-l-neon-amber">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-neon-amber/10 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-neon-amber">event_busy</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-[18px] text-white group-hover:text-neon-amber transition-colors">High-Value Stock Expiring Soon</h4>
+<span class="font-data-tabular text-[12px] text-secondary-fixed-dim whitespace-nowrap">2 hrs ago</span>
+</div>
+<p class="font-body-md text-[14px] text-secondary-fixed-dim mb-4">3 units of 'Humira 40mg' (NDC: 00074-4339-02) expiring in 30 days. Estimated value at risk: $12,400.</p>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-neon-amber/10 hover:bg-neon-amber/20 text-neon-amber border border-neon-amber/30 rounded-lg font-data-tabular text-[13px] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+                                        Process Return
+                                    </button>
+<button class="px-4 py-2 bg-transparent text-secondary-fixed-dim hover:text-white rounded-lg font-data-tabular text-[13px] transition-colors">
+                                        Discount Authorization
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Card: Urgent (Out of Stock) -->
+<div class="glass-panel rounded-xl p-card-padding hover:-translate-y-1 transition-transform duration-300 group border-l-4 border-l-neon-rose">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-neon-rose/10 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-neon-rose">production_quantity_limits</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-[18px] text-white group-hover:text-neon-rose transition-colors">Critical Stockout: Amoxicillin</h4>
+<span class="font-data-tabular text-[12px] text-secondary-fixed-dim whitespace-nowrap">4 hrs ago</span>
+</div>
+<p class="font-body-md text-[14px] text-secondary-fixed-dim mb-4">Zero inventory for 'Amoxicillin 500mg'. 5 prescriptions pending in queue. Secondary supplier has available stock.</p>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-white text-navy-900 hover:bg-surface-variant rounded-lg font-data-tabular text-[13px] font-semibold transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">shopping_cart_checkout</span>
+                                        Emergency Reorder
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Card: Info (Demand Surge) -->
+<div class="glass-panel rounded-xl p-card-padding hover:-translate-y-1 transition-transform duration-300 group border-l-4 border-l-neon-teal">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-neon-teal/10 flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-neon-teal">trending_up</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-headline-md text-[18px] text-white group-hover:text-neon-teal transition-colors">Demand Surge Detected</h4>
+<span class="font-data-tabular text-[12px] text-secondary-fixed-dim whitespace-nowrap">Yesterday</span>
+</div>
+<p class="font-body-md text-[14px] text-secondary-fixed-dim mb-4">AI Monitor detects a 45% week-over-week increase in Loratadine requests in your region. Current stock covers ~5 days.</p>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-neon-teal/10 hover:bg-neon-teal/20 text-neon-teal border border-neon-teal/30 rounded-lg font-data-tabular text-[13px] transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+                                        Adjust Pars
+                                    </button>
+<button class="px-4 py-2 bg-transparent text-secondary-fixed-dim hover:text-white rounded-lg font-data-tabular text-[13px] transition-colors">
+                                        View Forecast
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 border border-dashed border-navy-700 hover:border-neon-teal hover:bg-neon-teal/5 text-secondary-fixed-dim hover:text-neon-teal rounded-xl font-body-md text-[14px] transition-all duration-300">
+                        Load More Alerts
+                    </button>
+</div>
+<!-- Right Column: Context/Widgets (4 cols on desktop) -->
+<div class="md:col-span-4 space-y-bento-gap">
+<!-- Quick Stats Bento -->
+<div class="glass-panel rounded-xl p-card-padding relative overflow-hidden">
+<h3 class="font-label-caps text-label-caps text-secondary-fixed-dim mb-4">System Health</h3>
+<div class="space-y-6 relative z-10">
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-md text-[14px] text-white">Stock Availability</span>
+<span class="font-data-tabular text-[14px] text-neon-teal">94.2%</span>
+</div>
+<div class="w-full bg-navy-900 rounded-full h-1.5">
+<div class="bg-neon-teal h-1.5 rounded-full" style="width: 94.2%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-md text-[14px] text-white">Compliance Status</span>
+<span class="font-data-tabular text-[14px] text-neon-amber">Attention Req</span>
+</div>
+<div class="w-full bg-navy-900 rounded-full h-1.5">
+<div class="bg-neon-amber h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="pt-2 border-t border-white/10">
+<div class="flex items-center gap-2 text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]">update</span>
+<span class="font-data-tabular text-[12px]">Last synced: 2 mins ago</span>
+</div>
+</div>
+</div>
+<!-- Shader Background Placeholder (as requested for visual flair in right rail) -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 opacity-20 pointer-events-none z-0">
+
+</div>
+</div>
+<!-- Automated Rules Bento -->
+<div class="glass-panel rounded-xl p-card-padding border border-white/5 bg-gradient-to-br from-navy-800/80 to-navy-900/80">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-caps text-label-caps text-secondary-fixed-dim">Auto-Resolutions</h3>
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[18px]">smart_toy</span>
+</div>
+<div class="bg-navy-900/50 rounded-lg p-4 border border-navy-700">
+<p class="font-body-md text-[13px] text-secondary-fixed-dim mb-3">AI Monitor handled <strong class="text-white">14</strong> low-priority alerts in the last 24h via automated supplier POs.</p>
+<button class="w-full py-2 bg-transparent border border-neon-teal/50 hover:bg-neon-teal/10 text-neon-teal rounded-md font-data-tabular text-[12px] transition-colors">
+                                Review Automated Logs
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

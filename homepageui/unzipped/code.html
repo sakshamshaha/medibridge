@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBridge - Stronger Hearts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#2dd4bf', // Teal accent
+              dark: '#1e293b',    // Navy background
+              glass: 'rgba(255, 255, 255, 0.05)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-fonts">
+    @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;700;800&display=swap');
+  </style>
+<style data-purpose="custom-utilities">
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glow-accent {
+      position: absolute;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(45,212,191,0.15) 0%, rgba(30,41,59,0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body {
+      background-color: #0f172a; /* Deep navy/black */
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen relative flex flex-col p-4 sm:p-8">
+<!-- Background Glow -->
+<div class="glow-accent fixed top-0"></div>
+<!-- BEGIN: MainContainer / Hero -->
+<main class="w-full max-w-[1200px] h-[80vh] min-h-[600px] rounded-3xl bg-[#141b26] border border-white/10 overflow-hidden relative shadow-2xl flex flex-col z-10 mx-auto">
+<!-- BEGIN: Header -->
+<header class="flex justify-between items-center p-8 absolute top-0 w-full z-20">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<svg class="w-6 h-6 text-brand" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-4H5v-2h4V7h2v4h4v2h-4v4z"></path>
+</svg>
+<span class="font-bold text-sm tracking-wider uppercase">MediBridge</span>
+</div>
+<!-- Optional Small Nav -->
+<nav class="hidden md:flex gap-4">
+<span class="text-xs text-white/50 border border-white/10 rounded-full px-4 py-1.5 cursor-pointer hover:bg-white/5 transition">Services</span>
+<span class="text-xs text-white/50 border border-white/10 rounded-full px-4 py-1.5 cursor-pointer hover:bg-white/5 transition">About</span>
+</nav>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Hero Content -->
+<section class="flex-1 flex flex-col lg:flex-row w-full h-full relative">
+<!-- Left Column: Typography & CTAs -->
+<div class="flex-1 flex flex-col justify-end lg:justify-center p-8 lg:p-16 z-20 w-full lg:w-1/2 mt-24 lg:mt-0">
+<div class="mb-8 hidden lg:block">
+<p class="text-xs text-white/60 max-w-[200px] leading-relaxed">
+          Advanced cardiology care to protect, treat, and strengthen your heart.
+        </p>
+<p class="text-[10px] text-white/40 mt-2">Your heart, our priority.</p>
+</div>
+<h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[0.9] tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+        Stronger<br/>
+        Hearts —<br/>
+        Longer Lives.
+      </h1>
+<div class="flex flex-col sm:flex-row gap-4 mt-4 lg:mt-12">
+<!-- Customer Login -->
+<button class="bg-brand hover:bg-brand/90 text-[#0f172a] font-bold text-sm px-8 py-4 rounded-full transition-all shadow-[0_0_20px_rgba(45,212,191,0.3)]">
+          Login as Customer
+        </button>
+<!-- Retailer Login -->
+<button class="glass-panel text-white hover:bg-white/10 font-semibold text-sm px-8 py-4 rounded-full transition-all">
+          Login as Retailer
+        </button>
+</div>
+</div>
+<!-- Right Column: 3D Graphic & Glass Panels -->
+<div class="absolute lg:relative right-0 top-0 w-full lg:w-1/2 h-full z-10 pointer-events-none opacity-30 lg:opacity-100 flex items-center justify-center">
+<!-- Main 3D Image Placeholder -->
+<img alt="Abstract 3D Heart" class="w-[120%] lg:w-[140%] max-w-none h-auto object-cover absolute left-0 lg:-left-20 top-1/2 -translate-y-1/2 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqfQev2PtlO3-6D2zhIFMvJR0B5JZrXzQQyB7eUgn76VRqo8Aq2s_LZ3WHzlZjqgipNyW611nXy2TbKcnNgGyQ0TuT-iulH2fGN3OCiv9AreQD6sd_5oydYdC7zbuzFtpinEIWYwM0y6CU48cfAt1uG5FoHE2sN8bp74SjADRavv61TOFQ-t1idXGLLzgbnYRJvM1pzDyg7CVIk4bHxsPr47XetsptKYofgj_YujOohngHYiZUSaHg"/>
+<!-- Floating Glass UI Element 1 (Blood Status) -->
+<div class="absolute top-1/3 left-10 lg:-left-10 glass-panel rounded-2xl p-4 w-48 hidden md:block">
+<div class="flex items-center gap-2 mb-3">
+<svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+<span class="text-xs font-semibold text-white/80">Blood Status</span>
+</div>
+<div class="h-12 flex items-end gap-1">
+<div class="w-1.5 bg-white/20 h-full rounded-t-sm"></div>
+<div class="w-1.5 bg-brand h-[60%] rounded-t-sm"></div>
+<div class="w-1.5 bg-white/20 h-[80%] rounded-t-sm"></div>
+<div class="w-1.5 bg-brand h-[40%] rounded-t-sm"></div>
+<div class="w-1.5 bg-white/20 h-[70%] rounded-t-sm"></div>
+<div class="w-1.5 bg-brand h-[90%] rounded-t-sm"></div>
+</div>
+</div>
+<!-- Floating Glass UI Element 2 (Blood Count) -->
+<div class="absolute bottom-1/4 right-10 glass-panel rounded-3xl p-5 w-56 hidden md:block border-t-white/20 border-l-white/20 shadow-xl backdrop-blur-2xl">
+<div class="flex items-center gap-2 mb-4">
+<svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+<span class="text-xs font-semibold text-white/80">Blood Count</span>
+</div>
+<div class="flex justify-between items-end">
+<svg class="w-24 h-8 text-brand" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 100 30">
+<path d="M0 15 Q 12.5 0, 25 15 T 50 15 T 75 15 T 100 15"></path>
+<circle cx="75" cy="15" fill="currentColor" r="3"></circle>
+</svg>
+<div class="text-right">
+<span class="block text-2xl font-bold">80</span>
+<span class="block text-[10px] text-white/50">/100</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Content -->
+</main>
+<!-- BEGIN: Service Highlights (Bento Grid) -->
+<section class="max-w-[1200px] w-full mx-auto mt-24 z-10 relative">
+<div class="text-center mb-16">
+<h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 mb-4">Comprehensive Care Ecosystem</h2>
+<p class="text-white/60 max-w-2xl mx-auto">Seamlessly connecting patients, practitioners, and pharmacies through an integrated digital platform.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass-panel rounded-3xl p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-brand/20 rounded-full blur-3xl group-hover:bg-brand/30 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-brand mb-6">local_hospital</span>
+<h3 class="text-2xl font-bold mb-3">Hospital Inquiry</h3>
+<p class="text-white/60 text-sm leading-relaxed">Find specialized procedures with transparent pricing. Compare facilities and read verified patient reviews.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel rounded-3xl p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-purple-400 mb-6">stethoscope</span>
+<h3 class="text-2xl font-bold mb-3">Doctor Inquiry</h3>
+<p class="text-white/60 text-sm leading-relaxed">Book consultations with top specialists. Access tele-health services or schedule in-person visits easily.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-3xl p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-blue-400 mb-6">medication</span>
+<h3 class="text-2xl font-bold mb-3">Smart Pharmacy</h3>
+<p class="text-white/60 text-sm leading-relaxed">Upload prescriptions and get medicines delivered directly to your doorstep with real-time tracking.</p>
+</div>
+</div>
+</section>
+<!-- BEGIN: Platform Statistics -->
+<section class="w-[100vw] relative left-1/2 -translate-x-1/2 bg-white/5 border-y border-white/10 mt-32 py-20 backdrop-blur-sm">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+<div class="pt-8 md:pt-0">
+<div class="text-5xl font-extrabold text-brand mb-2">500+</div>
+<div class="text-sm text-white/60 uppercase tracking-widest font-semibold">Verified Hospitals</div>
+</div>
+<div class="pt-8 md:pt-0">
+<div class="text-5xl font-extrabold text-white mb-2">10k+</div>
+<div class="text-sm text-white/60 uppercase tracking-widest font-semibold">Medicines Available</div>
+</div>
+<div class="pt-8 md:pt-0">
+<div class="text-5xl font-extrabold text-brand mb-2">15<span class="text-3xl text-white/80">min</span></div>
+<div class="text-sm text-white/60 uppercase tracking-widest font-semibold">Restock Cycle</div>
+</div>
+</div>
+</section>
+<!-- BEGIN: How it Works -->
+<section class="max-w-[1200px] w-full mx-auto mt-32 z-10 relative">
+<div class="text-center mb-20">
+<h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 mb-4">Streamlined Experience</h2>
+<p class="text-white/60 max-w-2xl mx-auto">Get the care you need in three simple steps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2 -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-[#141b26] border border-white/20 flex items-center justify-center text-2xl font-bold text-brand shadow-[0_0_30px_rgba(45,212,191,0.1)] group-hover:border-brand transition-colors mb-6 z-10">1</div>
+<h3 class="text-xl font-bold mb-3">Select Role</h3>
+<p class="text-white/60 text-sm">Log in as a patient seeking care or a healthcare provider offering services.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-[#141b26] border border-white/20 flex items-center justify-center text-2xl font-bold text-white shadow-[0_0_30px_rgba(255,255,255,0.05)] group-hover:border-white transition-colors mb-6 z-10">2</div>
+<h3 class="text-xl font-bold mb-3">Find Service</h3>
+<p class="text-white/60 text-sm">Browse our network of hospitals, doctors, and smart pharmacies.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-[#141b26] border border-white/20 flex items-center justify-center text-2xl font-bold text-brand shadow-[0_0_30px_rgba(45,212,191,0.1)] group-hover:border-brand transition-colors mb-6 z-10">3</div>
+<h3 class="text-xl font-bold mb-3">Get Care</h3>
+<p class="text-white/60 text-sm">Book appointments, order medications, and manage your health seamlessly.</p>
+</div>
+</div>
+</section>
+<!-- BEGIN: Trust & Security -->
+<section class="max-w-[1200px] w-full mx-auto mt-32 mb-24 glass-panel rounded-3xl p-10 md:p-16 z-10 relative flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="md:w-1/2">
+<h2 class="text-3xl font-bold mb-4">Enterprise-Grade Security</h2>
+<p class="text-white/60 mb-8">Your health data is protected with end-to-end encryption and complies with global healthcare regulatory standards.</p>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2">
+<span class="material-symbols-outlined text-brand text-sm">verified</span>
+<span class="text-xs font-semibold">HIPAA Compliant</span>
+</div>
+<div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2">
+<span class="material-symbols-outlined text-brand text-sm">lock</span>
+<span class="text-xs font-semibold">End-to-End Encryption</span>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center">
+<div class="relative w-48 h-48">
+<div class="absolute inset-0 bg-brand/20 rounded-full blur-2xl animate-pulse"></div>
+<div class="absolute inset-0 border border-white/10 rounded-full flex items-center justify-center bg-[#141b26] shadow-2xl">
+<span class="material-symbols-outlined text-6xl text-brand">security</span>
+</div>
+</div>
+</div>
+</section>
+<!-- BEGIN: Footer -->
+<footer class="w-[100vw] relative left-1/2 -translate-x-1/2 bg-[#0a0f1a] border-t border-white/10 pt-20 pb-10 z-10">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<svg class="w-6 h-6 text-brand" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-4H5v-2h4V7h2v4h4v2h-4v4z"></path>
+</svg>
+<span class="font-bold text-sm tracking-wider uppercase">MediBridge</span>
+</div>
+<p class="text-white/40 text-sm">Bridging the gap between patients and premium healthcare services.</p>
+</div>
+<div>
+<h4 class="font-semibold text-white mb-6">Platform</h4>
+<ul class="space-y-4 text-sm text-white/50">
+<li><a class="hover:text-brand transition-colors" href="#">Hospital Directory</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Find a Doctor</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Pharmacy Services</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Patient Portal</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-white mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-white/50">
+<li><a class="hover:text-brand transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Press</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-white mb-6">Legal</h4>
+<ul class="space-y-4 text-sm text-white/50">
+<li><a class="hover:text-brand transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Cookie Policy</a></li>
+<li><a class="hover:text-brand transition-colors" href="#">Security</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-white/40 text-xs">
+<p>© 2024 MediBridge Healthcare. All rights reserved.</p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<a class="hover:text-white transition-colors" href="#">Twitter</a>
+<a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-white transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
