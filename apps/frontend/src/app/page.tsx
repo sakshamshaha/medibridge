@@ -2,11 +2,17 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useScroll, useMotionValueEvent, useSpring } from "framer-motion";
 
 export default function Homepage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { scrollY } = useScroll();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ 
+    target: containerRef, 
+    offset: ["start start", "end end"] 
+  });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 70, damping: 20, mass: 0.5 });
+  const preloadedImages = useRef<HTMLImageElement[]>([]);
 
   const renderFrame = (index: number) => {
     const canvas = canvasRef.current;
@@ -14,29 +20,46 @@ export default function Homepage() {
     const context = canvas.getContext("2d");
     if (!context) return;
 
-    const img = new Image();
-    img.src = `/newhomepageurl/ezgif-frame-${index.toString().padStart(3, "0")}.jpg`;
-    img.onload = () => {
+    const img = preloadedImages.current[index];
+    if (!img) return;
+
+    if (img.complete && img.naturalWidth > 0) {
       if (canvas.width !== img.width) canvas.width = img.width;
       if (canvas.height !== img.height) canvas.height = img.height;
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(img, 0, 0);
-    };
+    } else {
+      img.onload = () => {
+        if (canvas.width !== img.width) canvas.width = img.width;
+        if (canvas.height !== img.height) canvas.height = img.height;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(img, 0, 0);
+      };
+    }
   };
 
   useEffect(() => {
-    renderFrame(1);
+    // Preload all 240 frames
+    for (let i = 1; i <= 240; i++) {
+      const img = new Image();
+      img.src = `/newhomepageurl/ezgif-frame-${i.toString().padStart(3, "0")}.jpg`;
+      preloadedImages.current[i] = img;
+    }
+    
+    // Initial frame
+    const img = preloadedImages.current[1];
+    if (img.complete) {
+      renderFrame(1);
+    } else {
+      img.addEventListener('load', () => renderFrame(1), { once: true });
+    }
   }, []);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
     const frameCount = 240;
-    const maxScroll = 800;
-    const progress = Math.min(1, Math.max(0, latest / maxScroll));
-    const frameIndex = Math.min(
-      frameCount - 1,
-      Math.floor(progress * frameCount)
-    );
-    renderFrame(frameIndex + 1);
+    const progress = Math.min(1, Math.max(0, latest));
+    const frameIndex = Math.floor(progress * (frameCount - 1));
+    requestAnimationFrame(() => renderFrame(frameIndex + 1));
   });
 
   return (
@@ -45,7 +68,7 @@ export default function Homepage() {
       <div className="home-glow-accent fixed top-0"></div>
       
       {/* Hero Scroll Wrapper */}
-      <div className="h-[200vh] w-full relative">
+      <div ref={containerRef} className="h-[400vh] w-full relative">
         {/* MainContainer / Hero */}
         <main className="w-full max-w-[1200px] h-[80vh] min-h-[600px] rounded-3xl bg-[#141b26] border border-white/10 overflow-hidden sticky top-4 sm:top-8 shadow-2xl flex flex-col z-10 mx-auto">
         {/* Header */}

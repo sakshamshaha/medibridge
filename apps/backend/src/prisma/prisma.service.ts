@@ -10,7 +10,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     super({
       datasources: {
         db: {
-          url: isVercel ? 'file:/tmp/dev.db' : 'file:../../packages/database/prisma/dev.db',
+          url: isVercel ? 'file:/tmp/dev.db' : 'file:../../../packages/database/prisma/dev.db',
         },
       },
     });
