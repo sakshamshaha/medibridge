@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { LocationOn, Search, ArrowForward, CheckCircle, CalendarToday, FolderOpen, CloudDownload, LocalHospital, Stethoscope, Medication } from "@mui/icons-material"; // using icons if needed or span with material-symbols-outlined
+import { LocationOn, Search, ArrowForward, CheckCircle, CalendarToday, FolderOpen, CloudDownload, LocalHospital, MedicalServices, Medication } from "@mui/icons-material"; // using icons if needed or span with material-symbols-outlined
 
 export default function CustomerDashboard() {
   return (

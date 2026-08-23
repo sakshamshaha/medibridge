@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FilterList, Download, Add, Category, AccountBalanceWallet, Warning, TrendingUp, HorizontalRule, Medication, ShoppingCart, MoreVert, Pill, CheckCircle, Vaccines, EventBusy, Prescriptions, ChevronLeft, ChevronRight } from "@mui/icons-material"; // Adjust if using lucide-react
+import { FilterList, Download, Add, Category, AccountBalanceWallet, Warning, TrendingUp, HorizontalRule, Medication, ShoppingCart, MoreVert, CheckCircle, Vaccines, EventBusy, ChevronLeft, ChevronRight } from "@mui/icons-material"; // Adjust if using lucide-react
 
 export default function StockManagement() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { DocumentScanner, Search, Warning, Prescriptions, Add, Remove, Delete, PointOfSale } from "@mui/icons-material"; // Adjust if using lucide-react
+import { DocumentScanner, Search, Warning, Description, Add, Remove, Delete, PointOfSale } from "@mui/icons-material"; // Adjust if using lucide-react
 
 export default function SmartBillingScanner() {
   const [items, setItems] = useState([
