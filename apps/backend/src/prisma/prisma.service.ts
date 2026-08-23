@@ -20,7 +20,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     const isVercel = process.env.VERCEL || process.env.NODE_ENV === 'production';
     if (isVercel) {
       try {
-        const sourcePath = path.join(process.cwd(), 'dev.db');
+        const sourcePath = path.join(__dirname, 'dev.db');
         fs.copyFileSync(sourcePath, '/tmp/dev.db');
         console.log('Successfully copied SQLite DB to /tmp');
       } catch (e) {
