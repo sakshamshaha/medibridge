@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "generate": "prisma generate"
+    "generate": "npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0"
