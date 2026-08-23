@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "npx prisma generate --schema=../../packages/database/prisma/schema.prisma && nest build && node -e \"require('fs').copyFileSync('../../packages/database/prisma/dev.db', './dist/prisma/dev.db')\"",
+    "build": "npx prisma@5.22.0 generate --schema=../../packages/database/prisma/schema.prisma && nest build && node -e \"require('fs').copyFileSync('../../packages/database/prisma/dev.db', './dist/prisma/dev.db')\"",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
