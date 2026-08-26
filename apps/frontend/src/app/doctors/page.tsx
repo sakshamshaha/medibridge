@@ -187,7 +187,7 @@ export default function DoctorInquiryPage() {
                   
                   <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <div className="flex gap-2 flex-wrap w-full sm:w-auto">
-                      {doc.procedures.map(p => (
+                      {doc.procedures.map((p: string) => (
                         <span key={p} className="px-2.5 py-1 bg-surface-container text-on-surface-variant font-status-label text-[11px] rounded uppercase tracking-wider">
                           {p}
                         </span>
