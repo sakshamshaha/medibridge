@@ -1,0 +1,614 @@
+MEDICINE BLISTER / STRIP OCR
+Complete implementation specification for a production-oriented medicine identification feature
+Open-source OCR + computer vision + barcode + medicine database + validation + model training
+
+Representative difficult input: medicine blister/strip photograph with small reflective foil text.
+Prepared: 26 August 2026
+
+0. Executive answer to the training question
+Yes. The OCR model can be trained/fine-tuned, and for this project that is one of the highest-value improvements you can make. The recommended path is not to train a giant VLM from scratch. Instead, start from PP-OCRv6 pretrained weights and fine-tune the text-detection and text-recognition components on your own medicine-strip images. PaddleOCR explicitly documents vertical-scene fine-tuning for detection and recognition and recommends starting from pretrained weights. Its documentation says a small amount of real vertical-scene data can materially improve accuracy; it gives >=500 detection samples and >=5,000 recognition samples as practical starting points. [1]
+The most important distinction is that detection and recognition are different learning problems. Detection learns where the tiny text is. Recognition learns what the text says. For medicine blister packs, you should train them separately, then measure end-to-end medicine-identification accuracy.
+
+For the first production version, the architecture recommended by this document is PP-OCRv6 Medium as the primary OCR engine, PaddleOCR-VL-1.6 as a difficult-case fallback, ZXing-C++ for barcodes, OpenCV for image quality and geometry, and a medicine catalog for candidate validation. PP-OCRv6 is the current PaddleOCR universal OCR generation with tiny/small/medium tiers; the medium model is 34.5M parameters and the official documentation highlights improvements for industrial/specialized text. [2][3] PaddleOCR-VL-1.6 is a separate 0.9B document/image VLM released under Apache-2.0 and reports 96.33% on OmniDocBench v1.6, but that benchmark is a document benchmark, not a blister-pack benchmark. [4]
+1. Goal and non-goals
+1.1 Primary goal
+Given a mobile-phone photograph of a medicine blister strip, tablet strip, foil pack, or similar medicine packaging, identify the medicine reliably enough for the application to present a candidate medicine name, strength, manufacturer and supporting evidence, while refusing to guess when confidence is too low.
+1.2 Secondary goals
+Recover visible medicine name and strength from very small text.
+Recover manufacturer when possible.
+Recover batch/lot and expiry when readable, but treat them as secondary fields.
+Decode EAN/UPC/DataMatrix/other barcodes when present.
+Handle perspective distortion, mild curvature, blur, glare, low contrast and foil reflections.
+Support multilingual text that the selected OCR model can recognize; specifically test English plus the languages actually present in your target market.
+Use multiple pieces of evidence instead of trusting a single OCR string.
+Provide deterministic diagnostics explaining why an image was rejected or why the identification is low confidence.
+1.3 Non-goals
+Do not treat OCR as a medical prescribing or dosing engine.
+Do not infer a medicine solely from an uncertain fuzzy string match.
+Do not claim that a generic OCR benchmark proves performance on blister foil; build and publish an in-domain evaluation set.
+Do not make the first version dependent on a 35B document parser when a specialized OCR stack can handle the bulk of requests.
+2. Why blister/strip OCR is a special problem
+A medicine blister is not a normal document page. The text can be tiny, repeated, curved, partially occluded by pill cavities, printed on reflective foil, stamped or embossed, photographed at a severe angle, or captured at insufficient resolution. The useful text may occupy only a small fraction of the image. The camera can also introduce motion blur, focus blur, lens distortion, white-balance shifts, compression artifacts and specular highlights.
+
+3. Recommended architecture
+PHONE CAMERA
+    |
+    v
+[Capture Quality Gate]
+    |-- bad --> [Ask user to retake] 
+    |
+    v
+[Select best frame from 3-5 frames]
+    |
+    v
+[Medicine/strip ROI detection]
+    |
+    +--------------------------+-------------------------+
+    |                          |                         |
+    v                          v                         v
+[Barcode scan]         [Image variants]          [Optional direct ROI]
+    |                          |
+    |                          v
+    |                    [PP-OCRv6 Medium]
+    |                          |
+    |                 +--------+---------+
+    |                 |                  |
+    |                 v                  v
+    |             High conf.         Low/suspicious
+    |                 |                  |
+    |                 |          [PaddleOCR-VL-1.6]
+    |                 |                  |
+    +-----------------+------------------+
+                      v
+            [OCR result aggregation]
+                      |
+                      v
+            [Medicine field parser]
+                      |
+                      v
+              [Candidate search]
+                      |
+                      v
+             [Evidence scoring]
+                |            |
+                v            v
+             HIGH         MEDIUM/LOW
+                |            |
+                v            v
+             Result       Verify/Retake
+The core design principle is “specialized fast path + semantic fallback + deterministic evidence”. The first OCR model should be cheap enough to run on every request. The 0.9B VLM should only be invoked when the fast path is uncertain or structurally inconsistent.
+4. Model selection
+4.1 Primary model: PP-OCRv6 Medium
+PP-OCRv6 is the latest generation in PaddleOCR as of this specification. The official documentation describes tiny, small and medium tiers from 1.5M to 34.5M parameters. The medium/small models support a unified 50-language model, and the project highlights improvements in specialized text scenarios such as industrial characters. The official PP-OCRv6 medium recognition configuration uses a PPLCNetV4 backbone with SVTR-LCNet-style recognition components. [2][5]
+
+Do not choose the model purely from vendor benchmark claims. Your selection criterion should ultimately be medicine-level identification accuracy on your own held-out blister dataset.
+4.2 Secondary model: PaddleOCR-VL-1.6
+PaddleOCR-VL-1.6 is an Apache-2.0 0.9B image-to-text/document parsing model. The official model card reports a 96.33% OmniDocBench v1.6 score and provides direct PaddleOCR integration. [4] It is useful here as a difficult-case verifier because it can reason over the image rather than only performing line-level OCR, but the project should not assume that a document benchmark translates directly into blister-pack accuracy.
+Recommended use: send only a focused blister/foil crop or the best processed image, ask for structured fields, forbid guessing, and compare its result with PP-OCRv6 rather than replacing the specialized OCR engine.
+4.3 Alternative models to benchmark
+
+5. Camera and capture UX
+5.1 Live capture guidance
+The camera UI should actively help the user produce OCR-friendly images. A scanning rectangle should occupy a useful portion of the preview, and the app should display short instructions such as “Move closer”, “Reduce reflection”, “Hold steady”, or “Place strip inside frame”.
+5.2 Capture quality gate
+Before inference, compute a quality vector. The exact thresholds must be tuned on your own camera dataset.
+quality = {
+  sharpness: laplacian_variance(image),
+  brightness: mean_luma(image),
+  glare_ratio: saturated_highlight_area(image),
+  coverage: text_or_strip_area_ratio(image),
+  perspective: estimated_skew_or_quad_distortion(image),
+  resolution: min(width, height),
+}
+
+if quality.sharpness < SHARPNESS_MIN:
+    reject("Image is blurry")
+elif quality.glare_ratio > GLARE_MAX:
+    prompt("Move away from direct light")
+elif quality.coverage < COVERAGE_MIN:
+    prompt("Move closer")
+else:
+    proceed()
+5.3 Multi-frame capture
+Instead of trusting one photo, capture a short burst of 3-5 frames. Rank frames by blur, glare, text/strip coverage and exposure. Run the OCR stack on the top 1-2 frames or use the best frame for the initial pass. This can produce a larger real-world gain than swapping between similarly strong OCR models.
+6. Image preprocessing pipeline
+6.1 Stage A - image normalization
+Decode the original image without unnecessary recompression.
+Correct orientation using the camera metadata and optional orientation classification.
+Downscale only if the source is excessively large; preserve enough pixels for tiny text.
+Normalize color space and keep an untouched original for audit/reprocessing.
+6.2 Stage B - ROI detection
+Detect the medicine strip/blister or a relevant packaging region. The first implementation may use a simple object detector or user-guided crop. A later version can train a lightweight “medicine-pack ROI detector” using the same captured dataset.
+6.3 Stage C - geometric rectification
+If four corners or a stable quadrilateral can be estimated, use a homography to rectify the image. For curved foil, use an optional nonlinear dewarping stage. Do not force dewarping on already-flat images when it introduces distortions.
+6.4 Stage D - multiple image variants
+
+Do not threshold everything into pure black/white. Foil and embossed text frequently contain useful grayscale gradients that binarization can destroy.
+7. Text detection and recognition design
+7.1 Detection
+The detector should find text regions, ideally as polygons when text is rotated or slightly curved. Detection is where domain fine-tuning often produces a major gain because generic detectors can miss very small or low-contrast foil text.
+7.2 Recognition
+The recognizer receives a normalized text-line crop and predicts the transcription. Medicine text tends to contain short words, digits, decimals, units, punctuation and abbreviations, so the character distribution differs from general web/document corpora.
+7.3 Keep detection and recognition metrics separate
+
+8. Barcode branch
+Barcode scanning should run in parallel with OCR, not after OCR failure. Pharmaceutical packaging can use GS1 DataMatrix and other identifiers. GS1 describes the healthcare use of DataMatrix and notes that GS1 identifiers can carry product identifiers such as GTIN plus attributes such as batch/lot, expiry and serial number. [7]
+Use ZXing-C++ as the initial open-source reader. The project supports UPC/EAN, Code 128, Data Matrix ECC200 and other retail/industrial/matrix symbologies and provides C++ plus multiple bindings. [8]
+image
+  -> grayscale / contrast variants
+  -> barcode detector
+  -> ZXing-C++
+  -> decoded symbology + payload
+  -> normalize payload
+  -> lookup product identifier
+  -> use barcode evidence in final score
+A barcode match can be stronger than OCR text. However, do not assume every barcode payload is a medicine database key without understanding the symbology and country/manufacturer data structure.
+9. Medicine database and candidate generation
+9.1 Required fields
+
+9.2 Candidate search
+normalized_ocr = normalize_text(raw_ocr)
+name_candidates = search_brand_names(normalized_ocr)
+strength_candidates = parse_strength(raw_ocr)
+manufacturer_candidates = search_manufacturers(raw_ocr)
+barcode_candidates = barcode_lookup(decoded_barcode)
+
+final_candidates = rank_candidates(
+    name_candidates,
+    strength_candidates,
+    manufacturer_candidates,
+    barcode_candidates
+)
+The search layer should combine exact matching, normalized matching and conservative fuzzy matching. RapidFuzz or a database trigram index can be used for candidate generation, but candidate acceptance must be evidence-based.
+10. Medicine-specific text normalization
+OCR often confuses visually similar characters. Common examples include O/0, I/l/1, S/5, B/8 and punctuation around strengths. Normalization should be context-aware.
+raw:        "RispredaI 2mg"
+normalize:  "rispredai 2 mg"
+contextual: compare against medicine dictionary
+result:     "Risperdal 2 mg" (candidate, not blindly accepted)
+Normalize Unicode and whitespace.
+Collapse repeated spaces and punctuation.
+Normalize common unit spellings (mg, g, mcg, mL, %, IU) without changing numeric values.
+Do not globally replace “I” with “l” or “0” with “O”; use contextual candidate matching.
+Keep the original OCR string for auditability.
+Store token-level confidence if available.
+11. Confidence and evidence engine
+The application needs a dedicated confidence layer. Model confidence alone is insufficient because a high-confidence OCR string can still correspond to the wrong drug.
+score = (
+    w_ocr * ocr_confidence
+  + w_name * name_similarity
+  + w_strength * strength_match
+  + w_mfr * manufacturer_match
+  + w_barcode * barcode_match
+  + w_quality * image_quality
+  + w_agreement * model_agreement
+)
+
+if barcode_exact and trusted_product_match:
+    score += barcode_bonus
+
+if score >= HIGH_THRESHOLD:
+    status = "high_confidence"
+elif score >= REVIEW_THRESHOLD:
+    status = "needs_confirmation"
+else:
+    status = "retake_image"
+The exact formula is not sacred. Train/calibrate it using a held-out dataset. If the application ever displays a medicine recommendation, the product layer should expose why the candidate was selected: e.g. “name matched 98%, strength matched 100%, barcode matched exact”.
+12. Difficult-case fallback with PaddleOCR-VL-1.6
+12.1 Trigger conditions
+PP-OCRv6 confidence below threshold.
+No usable medicine-name candidate.
+Two leading candidates are close in score.
+OCR results disagree strongly across image variants.
+Detection found text but recognition is inconsistent.
+Image contains unusual layout or irregular text that the primary pipeline handles poorly.
+12.2 Structured prompt
+Read only visible pharmaceutical packaging text.
+Return JSON only:
+{
+  "medicine_name": string|null,
+  "strength": string|null,
+  "manufacturer": string|null,
+  "batch": string|null,
+  "expiry": string|null
+}
+Rules:
+- Do not guess missing characters.
+- Do not infer text that is not visible.
+- Use null for unreadable fields.
+- Preserve exact visible spelling when possible.
+12.3 Cross-model agreement
+If PP-OCRv6 and PaddleOCR-VL-1.6 agree on medicine name and strength, increase confidence. If they disagree, do not average the strings; treat the discrepancy as a review signal and run database candidate ranking.
+13. Can we train the OCR model? Yes - detailed training plan
+13.1 What exactly gets trained?
+The recommended path is fine-tuning, not training from zero. PaddleOCR provides separate training/evaluation/inference modules and separate configurations for detection and recognition. The PP-OCRv6 medium recognition config currently exposes pretrained weights, a 100-epoch baseline schedule, SVTR_LCNet-based recognition with a PPLCNetV4 medium backbone, multi-scale training and augmentations; the detector has its own configuration. [5][9]
+
+13.2 Dataset targets
+PaddleOCR documentation recommends at least 500 real detection samples and at least 5,000 recognition samples as practical starting points for vertical-scene fine-tuning. Treat those as a floor, not a promise of production accuracy. [10]
+
+The best number depends more on diversity than raw count. Ten thousand nearly identical images of one brand are less useful than a smaller dataset spanning many brands, foil colors, fonts, camera devices, angles and lighting conditions.
+13.3 Annotation schema for full images
+image_id: IMG_001234
+source: phone_camera
+medicine_id: internal_product_id
+language: en
+
+text_regions:
+  - polygon: [[x1,y1],[x2,y2],[x3,y3],[x4,y4]]
+    text: "Risperdal"
+    field: "medicine_name"
+  - polygon: ...
+    text: "2 mg"
+    field: "strength"
+  - polygon: ...
+    text: "JANSSEN-CILAG"
+    field: "manufacturer"
+  - polygon: ...
+    text: "..."
+    field: "batch"
+
+quality:
+  blur: low
+  glare: medium
+  perspective: high
+  curvature: medium
+Keep field labels in your annotation layer even though the OCR detector does not necessarily train on them. They become extremely valuable for analytics, targeted evaluation and future multi-task models.
+13.4 Recognition dataset format
+Create one line crop per text line and an exact transcription. Keep the raw crop, corrected/rectified crop, label, source image id and field type. Field type lets you evaluate medicine names separately from batch numbers.
+train_list.txt
+----------------
+images/rec/000001.jpg	Risperdal
+images/rec/000002.jpg	2 mg
+images/rec/000003.jpg	JANSSEN-CILAG
+...
+
+13.5 Split strategy - avoid leakage
+Do not randomly split near-duplicate images into train and validation sets. If the same medicine strip was photographed 50 times, all 50 variants should stay in one split. A better rule is to split by product/packaging family and by physical capture session/device where possible.
+
+14. Synthetic data generation
+Synthetic data is extremely useful for increasing character diversity and stress-testing the exact phenomena that make blister OCR hard. It should augment, not replace, real images.
+14.1 Synthetic text crops
+Render medicine names, strengths, units, manufacturers and batch-like strings using fonts approximating the target packaging.
+Vary character spacing, font weight, print height and tracking.
+Apply perspective transforms, local warps and mild curvature.
+Add blur, motion blur and compression artifacts.
+Add foil-like background textures and specular highlights.
+Vary brightness, white balance and color temperature.
+Add partial occlusion and pill-cavity shadows.
+Generate hard negatives such as logos, symbols, decorative lines and foil texture that should not be recognized as text.
+14.2 Synthetic full-pack images
+Take product layouts or generic packaging templates and composite the rendered text/foil into realistic scenes. Preserve the exact ground-truth text so the resulting data is automatically labeled.
+15. Fine-tuning procedure
+15.1 First experiment: recognizer only
+Start by fine-tuning recognition before touching detection if your detector is already finding the line crops. This is the fastest way to answer “does pharmacy-specific data fix the main character errors?”
+# Conceptual flow (exact command/config names should follow the
+# current PaddleOCR release you pin in your environment)
+1. clone PaddleOCR
+2. install PaddlePaddle + PaddleOCR
+3. prepare train_list.txt and val_list.txt
+4. select PP-OCRv6_medium_rec config
+5. set pretrained_model to official checkpoint
+6. point dataset paths at your crops
+7. train
+8. evaluate on held-out blister crops
+9. export inference model
+10. run end-to-end comparison against baseline
+PaddleOCR documents configuration-driven training and shows pretrained-model fine-tuning workflows. [9][11]
+15.2 Second experiment: detector
+Annotate text regions on the original blister photos. Fine-tune the medium detector. Pay special attention to very small text: the documentation notes that increasing prediction shape can improve detection of smaller text areas. [10]
+15.3 Third experiment: end-to-end pipeline
+Only after component-level validation should the detector and recognizer be evaluated together. Measure medicine-level accuracy, not only OCR line accuracy.
+16. Training hyperparameters - starting point
+Use the official PP-OCRv6 configuration as the baseline and change as little as possible in the first run. The current medium-recognition configuration uses a cosine learning-rate schedule, warmup, Adam optimizer, multi-scale sampling and augmentation. [5]
+
+17. Training loop for hard negatives
+After the first fine-tuned model ships to a test harness, save every failure case. The next training set should be intentionally enriched with examples the model gets wrong.
+production/test images
+        |
+        v
+collect failures
+        |
+        +--> missed text
+        +--> wrong character
+        +--> glare failure
+        +--> false detection
+        +--> wrong medicine candidate
+        |
+        v
+annotate + classify failure
+        |
+        v
+add to hard-case dataset
+        |
+        v
+periodic fine-tune
+        |
+        v
+regression evaluation
+This creates a data flywheel. The model should become specialized to the exact brands, camera devices and lighting conditions that your application encounters.
+18. Evaluation benchmark you should build
+18.1 Test-set composition
+
+
+18.2 Key KPIs
+
+The numerical targets above are engineering targets, not guarantees. The final thresholds should be chosen after you have a sufficiently large test set and understand the trade-off between false positives and retakes.
+19. False-positive safety design
+The most dangerous failure is not “could not read”. It is “read the wrong medicine and displayed it confidently”. Therefore, design the system to be asymmetric: uncertain outputs should fail closed.
+Require a strong name match plus strength agreement whenever strength is visible.
+Use manufacturer as corroboration, not as sole proof.
+Prefer exact/near-exact barcode evidence when a trusted lookup exists.
+If two medicines have similar names, require stronger evidence.
+Never invent missing characters simply to complete a database name.
+Show a confirmation state when evidence is mixed.
+Log the evidence components used for the decision.
+20. API design
+20.1 OCR endpoint
+POST /api/v1/medicine/identify
+Content-Type: multipart/form-data
+
+image: <file>
+market: "IN"
+language_hint: "en"
+return_debug: false
+
+20.2 Response schema
+{
+  "status": "high_confidence",
+  "medicine": {
+    "name": "Risperdal",
+    "generic_name": "Risperidone",
+    "strength": "2 mg",
+    "dosage_form": "tablet",
+    "manufacturer": "Janssen-Cilag"
+  },
+  "evidence": {
+    "ocr": ["Risperdal", "2 mg", "JANSSEN-CILAG"],
+    "barcode": null,
+    "ocr_confidence": 0.93,
+    "candidate_similarity": 0.98,
+    "model_agreement": 0.94
+  },
+  "warnings": [],
+  "request_id": "..."
+}
+20.3 Debug endpoint for development
+POST /api/v1/medicine/identify/debug
+
+Return:
+- original image metadata
+- selected frame score
+- ROI coordinates
+- preprocessed variants
+- detection polygons
+- OCR strings + confidence
+- barcode results
+- candidate list + scores
+- final decision
+
+Do not expose the debug endpoint publicly in production; protect it with authentication because raw medicine images may be sensitive.
+21. Suggested backend project structure
+medicine-ocr/
+├── app/
+│   ├── api/
+│   │   └── medicine.py
+│   ├── capture/
+│   │   └── quality.py
+│   ├── vision/
+│   │   ├── roi.py
+│   │   ├── rectify.py
+│   │   ├── preprocess.py
+│   │   └── frame_selector.py
+│   ├── ocr/
+│   │   ├── ppocrv6.py
+│   │   ├── paddleocr_vl.py
+│   │   └── aggregate.py
+│   ├── barcode/
+│   │   └── zxing.py
+│   ├── medicine/
+│   │   ├── normalize.py
+│   │   ├── parser.py
+│   │   ├── search.py
+│   │   └── scorer.py
+│   ├── models/
+│   │   └── schemas.py
+│   └── config.py
+├── models/
+│   ├── ppocrv6/
+│   └── vl/
+├── data/
+│   ├── raw/
+│   ├── annotations/
+│   ├── crops/
+│   ├── synthetic/
+│   └── benchmark/
+├── training/
+│   ├── detection/
+│   ├── recognition/
+│   └── configs/
+├── scripts/
+│   ├── annotate_export.py
+│   ├── build_rec_dataset.py
+│   ├── synthesize.py
+│   ├── evaluate.py
+│   └── hard_cases.py
+└── tests/
+    ├── unit/
+    ├── integration/
+    └── golden_images/
+
+22. Database schema
+TABLE medicine_product
+- id
+- brand_name
+- generic_name
+- strength
+- dosage_form
+- manufacturer_id
+- market
+- normalized_name
+- barcode_gtin
+- active
+
+TABLE manufacturer
+- id
+- canonical_name
+- normalized_name
+- aliases
+
+TABLE medicine_alias
+- medicine_id
+- alias
+- normalized_alias
+
+TABLE recognition_event
+- request_id
+- model_version
+- image_quality
+- raw_ocr_json
+- barcode_json
+- candidate_json
+- final_status
+- final_medicine_id
+- created_at
+23. Medicine data sources
+For internationally normalized drug concepts, RxNorm is a useful reference system from the U.S. National Library of Medicine, with terminology and APIs. [12] For an India-focused application, build or license a market-specific catalog containing local brand names, formulations, manufacturers and barcode/product identifiers. A production system should record the provenance and license of every imported medicine dataset.
+Do not treat a medicine database as merely a spelling dictionary. It is part of the identity-resolution system, so version it and keep the exact database version associated with each OCR decision.
+
+24. Model/version management
+
+The same photograph should be reproducible. A production request must be traceable to the exact OCR weights, preprocessing version, medicine catalog and scoring version used at inference time.
+25. Compute recommendations
+25.1 Development
+
+Treat these as planning ranges rather than guarantees. Measure with the exact PaddlePaddle/PyTorch/CUDA versions and image sizes you will deploy.
+26. Deployment strategy
+26.1 Version 1 - server-side
+1. Mobile app captures best frame and uploads JPEG/HEIC/PNG within a configured size limit.
+2. Backend runs quality checks and preprocessing.
+3. PP-OCRv6 runs on CPU/GPU.
+4. Fallback VLM runs only for uncertain cases.
+5. Medicine DB resolves candidates.
+6. API returns structured result and confidence state.
+26.2 Version 2 - hybrid edge/server
+1. Run blur/glare/quality gate on-device.
+2. Optionally run PP-OCRv6 small or another edge model on-device.
+3. Upload only when confidence is low or barcode lookup fails.
+4. Keep PaddleOCR-VL-1.6 server-side.
+27. Latency optimization
+Use a bounded input resolution; do not feed 20+ megapixel photos to every model.
+Crop early; OCR the relevant region rather than the entire photo when possible.
+Run barcode detection in parallel with OCR.
+Cache medicine candidate searches by normalized name/strength.
+Batch requests when processing multiple frames or crops on a GPU.
+Do not invoke the VLM fallback unless the decision really needs it.
+Use model warm-up and persistent workers.
+28. Observability and logging
+request_id and timestamp
+model versions
+image dimensions and quality scores
+selected frame index
+barcode result
+detected text regions count
+OCR raw outputs
+candidate names and scores
+final status
+latency by pipeline stage
+whether the user accepted/retook/overrode the result
+Store enough information for debugging, but apply strict retention and access controls to uploaded medicine photographs. Where possible, separate operational metrics from raw images and delete images after the minimum debugging/quality period.
+29. Testing strategy
+29.1 Unit tests
+Strength parser: mg/g/mcg/mL/%/IU and decimal formatting.
+Manufacturer normalization.
+Candidate ranking.
+Barcode payload normalization.
+Confidence threshold behavior.
+Retake decision behavior.
+29.2 Golden-image tests
+Maintain a fixed set of representative images and expected structured results. Every model/preprocessing change must run against the set. Store both positive and failure cases.
+29.3 Regression rule
+A new OCR model is not allowed to ship because average OCR accuracy improved. It must not regress medicine-level identification or materially increase dangerous false positives.
+
+30. Recommended implementation phases
+
+31. Concrete first milestone - build this before training
+The fastest way to start is to implement the inference pipeline with pretrained models before collecting a huge dataset. This tells you which stage is actually failing.
+1. Create a 100-300 image pilot set of real blister/strip photos.
+2. Run PP-OCRv6 Medium on original, contrast, sharpened and rectified variants.
+3. Add barcode decoding in parallel.
+4. Build candidate search against a small curated medicine dataset.
+5. Add confidence scoring and a hard “retake image” path.
+6. Log every failure and classify it into detection, recognition, preprocessing, database or scoring failure.
+7. Only then decide where fine-tuning will produce the biggest return.
+32. Fine-tuning roadmap after the pilot
+Week / milestone model
+
+M0:     100-300 real images -> baseline
+M1:     +500 detection annotations -> detector experiment
+M2:     +5,000 recognition crops -> recognizer experiment
+M3:     hard-case augmentation -> synthetic expansion
+M4:     2k-5k full photos + 10k-50k crops -> strong v1
+M5+:    production failures -> continuous domain adaptation
+These are project-planning milestones, not fixed schedules. The important sequence is baseline -> measure -> annotate -> fine-tune -> measure again.
+33. What not to do
+Do not run a giant VLM on every image and call that the OCR system.
+Do not assume document benchmark scores transfer to blister foil.
+Do not crop away context before you have stored the original image and coordinates.
+Do not train only on clean screenshots or downloaded product images if deployment uses phone photos.
+Do not randomly split repeated photos of the same strip across train and test.
+Do not let fuzzy search silently convert uncertain OCR into a definitive drug name.
+Do not evaluate only average OCR accuracy; evaluate medicine-level false identifications.
+Do not retrain from scratch unless you have a research reason and substantial data/compute.
+34. Direct answer: can we train the OCR model?
+Yes - and the project should plan for it from the beginning. The most practical route is to fine-tune PP-OCRv6 Medium’s detector and recognizer on your own annotated blister/strip data. PaddleOCR provides explicit detection and recognition training configurations, and its vertical-scene fine-tuning documentation is specifically intended for cases where a generic pretrained model is not enough. [5][10]
+Start with the pretrained model. Do not immediately change the architecture. First establish a baseline on your own test set. Then fine-tune recognition with real text-line crops. After that, fine-tune detection with full-image text polygons. Add realistic foil/glare/perspective synthetic augmentation. Keep a clean held-out test set and compare every new model against the baseline.
+If your dataset eventually becomes large enough, you can go beyond simple fine-tuning: train a medicine-specific text detector, a specialized recognizer, or a lightweight candidate-ranking model. But those should be second-stage improvements, not the starting point.
+35. Final recommended stack
+
+36. Implementation decision in one sentence
+Build a specialized medicine-image pipeline around PP-OCRv6 Medium, not around a giant document VLM: improve the camera input first, run barcode and OCR in parallel, fine-tune detector + recognizer on real blister data, use PaddleOCR-VL-1.6 only for uncertain cases, and accept a medicine identity only when OCR/database/barcode evidence is sufficiently consistent.
+37. Source references
+[1] PaddleOCR Fine-tune documentation - vertical-scene fine-tuning, dataset guidance. https://www.paddleocr.ai/main/en/version2.x/ppocr/model_train/finetune.html
+[2] PaddleOCR PP-OCRv6 official documentation. https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version3.x/algorithm/PP-OCRv6/PP-OCRv6.en.md
+[3] PaddleOCR official project documentation / current releases. https://github.com/PaddlePaddle/PaddleOCR
+[4] PaddlePaddle PaddleOCR-VL-1.6 model card. https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6
+[5] PP-OCRv6 Medium recognition training configuration. https://github.com/PaddlePaddle/PaddleOCR/blob/main/configs/rec/PP-OCRv6/PP-OCRv6_medium_rec.yml
+[6] PaddleOCR Apache-2.0 license information. https://github.com/PaddlePaddle/PaddleOCR/blob/main/setup.py
+[7] GS1 DataMatrix in healthcare. https://www.gs1.org/docs/healthcare/MC07_GS1_Datamatrix.pdf
+[8] ZXing-C++ official repository. https://github.com/zxing-cpp/zxing-cpp
+[9] PaddleOCR text recognition training documentation. https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version2.x/ppocr/model_train/recognition.en.md
+[10] PaddleOCR model training/fine-tuning guidance. https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version2.x/ppocr/model_train/training.en.md
+[11] PaddleOCR Quick Start. https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/quick_start.en.md
+[12] U.S. National Library of Medicine RxNorm. https://www.nlm.nih.gov/research/umls/rxnorm/
+38. Appendix A - first-day experiment checklist
+Create repository and pin PaddleOCR/PaddlePaddle versions.
+Download PP-OCRv6 Medium detection and recognition checkpoints.
+Run the sample blister image through the baseline pipeline.
+Add OpenCV image quality metrics.
+Add 3-5 frame capture selection in the client prototype.
+Implement basic ROI crop and perspective correction.
+Run four preprocessing variants.
+Decode barcodes with ZXing-C++.
+Create a small medicine table with brand/generic/strength/manufacturer.
+Implement candidate ranking.
+Implement high/medium/low confidence statuses.
+Save every failure case and its cause.
+Only after baseline: start annotation for fine-tuning.
+39. Appendix B - minimum annotation workflow
+1. Upload a full phone photo into an annotation tool.
+2. Mark each readable text line as a polygon/region.
+3. Enter the exact transcription from the image.
+4. Assign a semantic field tag: medicine_name, strength, manufacturer, batch, expiry, other.
+5. Record image conditions: glare, blur, perspective, curvature, lighting.
+6. Export detector annotations and recognition crops.
+7. Validate labels with a second reviewer for the test set.
+8. Generate train/validation/test splits by product/session rather than by random image.
+40. Appendix C - example decision for the provided sample
+For the representative image used in this specification, the system should not simply OCR the entire 481x341 photograph. It should first isolate the blister/box regions, look for barcodes, and send the blister crop through several image variants. The large printed “Risperdal 2 mg” area is likely easier than the repeated tiny foil text; this example should therefore be included in the benchmark as an easy-vs-hard-region pair.
+Expected structured output for a correctly readable case would resemble:
+{
+  "medicine_name": "Risperdal",
+  "strength": "2 mg",
+  "manufacturer": "Janssen-Cilag"
+}
+That example is an illustration of the output schema, not a claim that the OCR pipeline has independently verified the medicine from the image. In production, the system should still validate the candidate against its medicine catalog and any decoded product identifier.

@@ -1,0 +1,10 @@
+{
+  "total_medicines": 108,
+  "total_samples": 2922,
+  "train_samples": 2483,
+  "val_samples": 439,
+  "unique_labels": 2368,
+  "output_dir": "C:\\Users\\Yash Sharma\\Desktop\\medi\\apps\\medicine-ocr\\training_data",
+  "format": "PaddleOCR",
+  "note": "Training corpus for medicine OCR. Each sample is a text variation of a medicine name/generic/strength/manufacturer as it might appear on a blister pack."
+}

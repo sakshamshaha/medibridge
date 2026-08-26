@@ -1,0 +1,439 @@
+images\med_f162e9c8_015.png	Olsar 20 mg
+images\med_ecd67f3a_002.png	TRETINOIN 0.025%
+images\med_11787c7d_008.png	FERROUS SULPHATE 200MG TABLET
+images\med_168cba08_029.png	promethazine hcl
+images\med_933bc2d8_008.png	Oral Rehydration Salts
+images\med_f9979576_015.png	TRAMADOL 50MG TABLET
+images\med_e0edd5c4_012.png	Cefixime 200Mg
+images\med_2291c346_000.png	Liquid Paraffin + Milk of Magnesia Compound
+images\med_7d5c2b99_003.png	Neomercazole 5mg Tablet
+images\med_68cbc105_013.png	Amoxicillin + Clavulanate
+images\med_635f0b97_019.png	Mucinac600mgEffervescentTablet
+images\med_7c3ed740_023.png	Metoprolol 25mg Tablet
+images\med_5a6bf418_015.png	Eltroxin 50mcg Tablet
+images\med_e0edd5c4_022.png	200Mg
+images\med_c126403b_002.png	Donepezil Hcl
+images\med_1bffb35a_002.png	Metformin HCl 500 mg
+images\med_c0648a4e_025.png	Alendronate70mgTablet
+images\med_5d008352_026.png	fluoxetine 20mg capsule
+images\med_63bdcdad_017.png	MOXIFLOXACIN HCL 0.5%
+images\med_ff4cc516_005.png	Huminsulin N 100 IU Injection
+images\med_0abbc03e_003.png	Alprazolam
+images\med_223d0157_022.png	Folic Acid 5Mg Tablet
+images\med_64f45aaa_016.png	furosemide 40mg
+images\med_5a846311_024.png	75 mg
+images\med_c126403b_028.png	DONEPEZIL 5MG
+images\med_db966d24_021.png	SALMETEROL + FLUTICASONE
+images\med_c4c13132_016.png	0.25MG
+images\med_696ae1bd_000.png	60000IU
+images\med_a8d76f91_023.png	hll lifecare
+images\med_befd0233_014.png	Novartis India
+images\med_2ae45ccf_012.png	AMLODIPINE 5MG TABLET
+images\med_1bffb35a_006.png	500mg
+images\med_9b1b6f11_000.png	CIPLA
+images\med_e93a0754_011.png	dolo 650mg tablet
+images\med_7d5c2b99_009.png	Carbimazole 5mg
+images\med_a960b0ea_023.png	pfizer india
+images\med_168cba08_021.png	25Mg
+images\med_befd0233_016.png	500MG
+images\med_ee8e2396_020.png	Falcigo200mgTablet
+images\med_6678f79a_024.png	sanofi india
+images\med_c0648a4e_027.png	ALENDRONATE 70MG
+images\med_b8518679_002.png	Glimepiride2mgTablet
+images\med_223d0157_011.png	Folic Acid 5mg
+images\med_b8518679_006.png	SanofiIndia
+images\med_35bc51a1_015.png	40 mg
+images\med_81d90895_019.png	cadila healthcare
+images\med_9d7fdef9_021.png	Sun Pharma
+images\med_c4bbc34a_008.png	domperidone
+images\med_9b1b6f11_016.png	400 mg
+images\med_2171bf1c_003.png	pregabalin 75mg capsule
+images\med_7d0f40c9_021.png	Norfloxacin 400mg
+images\med_8a5e5f83_019.png	Timolol Maleate
+images\med_7f6dd7f5_010.png	abbott india
+images\med_0133a0cb_017.png	LosartanPotassium50mg
+images\med_35bc51a1_018.png	PANTOPRAZOLE 40MG
+images\med_8f908c02_026.png	INSULIN GLARGINE
+images\med_43698167_003.png	SunPharma
+images\med_8d46c2a1_003.png	ATENOLOL 50MG
+images\med_635f0b97_012.png	600mg
+images\med_ecd67f3a_015.png	0.025%
+images\med_f162e9c8_003.png	OLMESARTAN
+images\med_c4c13132_013.png	Digoxin 0.25 mg
+images\med_ca0a8ab3_020.png	Clindamycin 300Mg Capsule
+images\med_de61ea08_010.png	Loratadine 10Mg
+images\med_22377fd2_015.png	ecosprin 75mg tablet
+images\med_de61ea08_013.png	Loratadine
+images\med_e7334590_004.png	100Mg
+images\med_2291c346_005.png	cremaffin syrup syrup
+images\med_d95c2b97_002.png	MetforminHCl1000mg
+images\med_ca0a8ab3_028.png	300MG
+images\med_f12eb12e_010.png	ROSUVASTATIN 10MG TABLET
+images\med_34c88a9e_012.png	Sitagliptin 100 mg
+images\med_d95c2b97_004.png	METFORMIN HCL 1000MG
+images\med_06d5617a_006.png	SunPharma
+images\med_f9979576_022.png	tramadol 50mg
+images\med_7d0f40c9_016.png	cipla
+images\med_4bd10aff_013.png	Novartis India
+images\med_168cba08_009.png	Promethazine HCl 25mg
+images\med_a8d76f91_010.png	Norethisterone + Ethinyl Estradiol
+images\med_0b20efea_015.png	nimesulide 100mg tablet
+images\med_018099b1_002.png	2 mg
+images\med_d9dc56e0_015.png	Nitrofurantoin100mg
+images\med_168cba08_026.png	PromethazineHCl25mg
+images\med_7f6dd7f5_028.png	Ibuprofen 400Mg
+images\med_ee8e2396_025.png	Falcigo 200mg Tablet
+images\med_2ae45ccf_026.png	Amlodipine 5 mg
+images\med_0133a0cb_024.png	LOSARTAN 50MG
+images\med_54eb2f38_026.png	COMBIFLAM TABLET
+images\med_f9979576_021.png	Tramadol 50 mg
+images\med_89cd823e_023.png	SaridonTabletTablet
+images\med_289b4229_028.png	GSK India
+images\med_97e744bf_012.png	Cetirizine 10Mg
+images\med_be0f137d_006.png	Calcium Carbonate + Vitamin D3 500 mg + 250 IU
+images\med_4bd10aff_005.png	galvus 50mg tablet
+images\med_a8d76f91_006.png	mala-d tablet
+images\med_8d46c2a1_007.png	Atenolol 50 mg Tablet
+images\med_8fb8564a_007.png	ASTHALIN INHALER
+images\med_5d008352_021.png	cipla
+images\med_5a6bf418_008.png	LEVOTHYROXINE 50MCG
+images\med_6678f79a_011.png	Fexofenadine
+images\med_54eb2f38_003.png	400Mg + 325Mg
+images\med_de61ea08_004.png	10mg
+images\med_5a94c15f_012.png	CLOTRIMAZOLE 1% CREAM CREAM
+images\med_933bc2d8_010.png	oral rehydration salts standard who formula
+images\med_b65b6f2d_007.png	sun pharma
+images\med_659bda0a_002.png	WARFARIN 5MG
+images\med_d7548961_013.png	Gabapentin 300 mg
+images\med_8a5e5f83_007.png	timolol maleate
+images\med_8fb8564a_002.png	Asthalin Inhaler
+images\med_d95c2b97_024.png	Metformin HCl
+images\med_7d0f40c9_005.png	Norflox400mg
+images\med_1e668cd4_000.png	Telma40mgTablet
+images\med_deb81d93_017.png	GSKIndia
+images\med_68cbc105_008.png	625Mg
+images\med_d95c2b97_014.png	1000MG
+images\med_da56c31b_018.png	Clonazepam 0.5 mg Tablet
+images\med_2d223f42_008.png	NovartisIndia
+images\med_da56c31b_005.png	CLONAZEPAM 0.5MG TABLET
+images\med_9b1b6f11_018.png	400MG
+images\med_2171bf1c_011.png	pregabalin 75mg
+images\med_e7334590_020.png	cipla
+images\med_738912bb_021.png	OLANZAPINE
+images\med_659bda0a_020.png	warfarin sodium
+images\med_e37fc85a_007.png	Fluconazole150mgCapsule
+images\med_f9979576_008.png	Tramadol Hcl
+images\med_d95c2b97_013.png	metformin hcl 1000mg
+images\med_7d0f40c9_006.png	Norflox 400 mg
+images\med_3d1f6924_010.png	Msd India
+images\med_e7334590_014.png	DOXYCYCLINE HYCLATE
+images\med_59978ce5_005.png	Pfizer India
+images\med_8a5e5f83_017.png	TimololMaleate0.5%
+images\med_3a1940c1_009.png	Ranitidine 150mg
+images\med_5a94c15f_013.png	bayer india
+images\med_43698167_022.png	SPIRONOLACTONE 25MG TABLET
+images\med_63bdcdad_007.png	moxifloxacin eye drop
+images\med_25d144ba_005.png	4Mg
+images\med_a8d76f91_004.png	norethisterone + ethinyl estradiol 1mg + 0.035mg
+images\med_ff4cc516_012.png	INSULIN ISOPHANE (NPH)
+images\med_f9979576_028.png	tramadol hcl 50mg
+images\med_289b4229_022.png	Zentel 400Mg
+images\med_c4bbc34a_005.png	Domperidone10mg
+images\med_63bdcdad_018.png	Moxifloxacin Eye Drop
+images\med_933bc2d8_015.png	ORS Electral Powder Powder
+images\med_696ae1bd_018.png	Cholecalciferol60000IU
+images\med_43698167_001.png	spironolactone 25mg tablet
+images\med_6678f79a_008.png	SanofiIndia
+images\med_b3b2663f_011.png	deriphyllin retard tablet
+images\med_22377fd2_021.png	Ecosprin75mg
+images\med_ca0a8ab3_023.png	300Mg
+images\med_db966d24_017.png	Salmeterol + Fluticasone 25mcg + 250mcg
+images\med_cb7204d4_025.png	Duphaston10mgTablet
+images\med_21924655_000.png	CIPLA
+images\med_2171bf1c_007.png	SUN PHARMA
+images\med_223d0157_013.png	Folic Acid 5 mg
+images\med_018099b1_004.png	Risperidone2mg
+images\med_25d144ba_008.png	ONDANSETRON
+images\med_34c88a9e_006.png	100Mg
+images\med_22377fd2_013.png	Ecosprin 75 mg Tablet
+images\med_8fb8564a_001.png	asthalin inhaler inhaler
+images\med_6678f79a_016.png	ALLEGRA 120MG
+images\med_9b4b4ce2_017.png	PREDNISOLONE
+images\med_8efa4f6a_015.png	ABBOTT INDIA
+images\med_81d90895_022.png	Cholecalciferol 60000 IU
+images\med_8d46c2a1_005.png	ATENOLOL 50MG TABLET
+images\med_5a846311_000.png	Oseltamivir 75Mg Capsule
+images\med_7c8a8df6_025.png	metrogyl 400mg tablet
+images\med_5a6bf418_002.png	LEVOTHYROXINE
+images\med_5a846311_009.png	Oseltamivir 75mg Capsule
+images\med_7dad208c_002.png	Omez 20Mg
+images\med_ee8e2396_018.png	FALCIGO 200MG
+images\med_8a5e5f83_004.png	SunPharma
+images\med_1e668cd4_012.png	Telmisartan 40mg
+images\med_635f0b97_025.png	Mucinac 600 mg Effervescent Tablet
+images\med_0f1728cf_014.png	Methylprednisolone4mg
+images\med_7c3ed740_026.png	Metoprolol 25Mg
+images\med_018099b1_009.png	Risperidone 2mg
+images\med_f9979576_030.png	Tramadol 50 mg Tablet
+images\med_933bc2d8_014.png	Ors Electral Powder
+images\med_d7548961_000.png	Gabapentin 300 mg Capsule
+images\med_738912bb_000.png	Olanzapine5mgTablet
+images\med_4bd10aff_000.png	Vildagliptin50mg
+images\med_738912bb_016.png	Olanzapine 5Mg Tablet
+images\med_fed4f81f_023.png	Jardiance 10mg Tablet
+images\med_9b4b4ce2_002.png	Wysolone 5Mg
+images\med_3b9ad30b_013.png	amitriptyline hcl
+images\med_0133a0cb_010.png	Losartan 50Mg Tablet
+images\med_1e668cd4_024.png	TELMISARTAN
+images\med_a960b0ea_018.png	phenytoin 100mg
+images\med_97e744bf_006.png	cetirizine hcl 10mg
+images\med_7f6dd7f5_003.png	Ibuprofen
+images\med_c4dace63_016.png	SUMATRIPTAN 50MG
+images\med_a960b0ea_007.png	Phenytoin Sodium 100Mg
+images\med_0f1728cf_001.png	Methylprednisolone 4mg
+images\med_be0f137d_019.png	Shelcal 500mg
+images\med_9b1b6f11_013.png	ACYCLOVIR 400MG
+images\med_db3d2896_010.png	NOVARTIS INDIA
+images\med_7d0f40c9_023.png	Norfloxacin
+images\med_7c8a8df6_008.png	metronidazole
+images\med_c4c13132_010.png	DIGOXIN 0.25MG TABLET
+images\med_6678f79a_002.png	fexofenadine
+images\med_1bffb35a_029.png	metformin hcl
+images\med_9d7fdef9_016.png	REVITAL CAPSULE
+images\med_dfe5d351_009.png	Lariago 250Mg Tablet
+images\med_c126403b_012.png	Donepezil 5 mg
+images\med_0abbc03e_019.png	Sun Pharma
+images\med_81d90895_021.png	Calcirol 60000 Iu Granules
+images\med_7cbe86e2_008.png	CROCIN 500MG TABLET
+images\med_b3b2663f_017.png	Etofylline + Theophylline
+images\med_e93a0754_003.png	Paracetamol 650 mg
+images\med_0abbc03e_002.png	alprazolam 0.5mg
+images\med_2ae45ccf_007.png	5 mg
+images\med_8c9c87eb_025.png	Johnson&JohnsonIndia
+images\med_8fb8564a_003.png	ASTHALIN INHALER INHALER
+images\med_21924655_019.png	Dexamethasone0.5mgTablet
+images\med_3b9ad30b_005.png	sun pharma
+images\med_b8518679_020.png	Sanofi India
+images\med_9b4b4ce2_027.png	wysolone 5mg
+images\med_ca0a8ab3_015.png	clindamycin hcl
+images\med_6678f79a_014.png	120Mg
+images\med_2ae45ccf_020.png	Amlodipine5mgTablet
+images\med_7cbe86e2_011.png	GSK INDIA
+images\med_ff4cc516_007.png	ELI LILLY INDIA
+images\med_0f1728cf_017.png	4mg
+images\med_7c8a8df6_002.png	Metronidazole
+images\med_9d7fdef9_005.png	Standard
+images\med_5a6bf418_000.png	Levothyroxine 50mcg
+images\med_8d46c2a1_019.png	Atenolol50mg
+images\med_7c3ed740_025.png	25 mg
+images\med_0abbc03e_008.png	ALPRAZOLAM 0.5MG TABLET
+images\med_7d5c2b99_012.png	abbott india
+images\med_696ae1bd_008.png	SunPharma
+images\med_9b1b6f11_014.png	Acyclovir 400mg
+images\med_1e668cd4_009.png	40Mg
+images\med_34c88a9e_007.png	Sitagliptin 100mg
+images\med_64f45aaa_002.png	FUROSEMIDE 40MG TABLET
+images\med_b3b2663f_018.png	deriphyllin retard
+images\med_54eb2f38_007.png	IBUPROFEN + PARACETAMOL 400MG + 325MG
+images\med_635f0b97_006.png	N-Acetylcysteine 600mg
+images\med_7f6dd7f5_027.png	Ibuprofen 400mg
+images\med_8d46c2a1_002.png	ATENOLOL
+images\med_da56c31b_015.png	0.5mg
+images\med_0b20efea_014.png	Mankind Pharma
+images\med_5d008352_013.png	Fluoxetine 20mg Capsule
+images\med_ff4cc516_000.png	HUMINSULIN N 100IU
+images\med_11787c7d_004.png	Ferrous Sulphate
+images\med_b8518679_000.png	glimepiride 2mg
+images\med_de61ea08_020.png	Loratadine 10 mg Tablet
+images\med_659bda0a_018.png	WARFARIN SODIUM
+images\med_de61ea08_011.png	Loratadine 10mg Tablet
+images\med_a8d76f91_025.png	MALA-D TABLET
+images\med_1bffb35a_027.png	500 mg
+images\med_9cb4a48b_014.png	Montair 10 mg
+images\med_659bda0a_009.png	5 mg
+images\med_2d223f42_016.png	TerbinafineHCl
+images\med_db3d2896_022.png	novartis india
+images\med_db966d24_018.png	Salmeterol + Fluticasone 25 mcg + 250 mcg
+images\med_8efa4f6a_014.png	Levothyroxine 100Mcg
+images\med_0f1728cf_000.png	METHYLPREDNISOLONE
+images\med_c126403b_011.png	donepezil hcl 5mg
+images\med_54eb2f38_011.png	ibuprofen + paracetamol 400mg + 325mg
+images\med_befd0233_001.png	CALCIUM SANDOZ 500MG
+images\med_933bc2d8_003.png	StandardWHOFormula
+images\med_06d5617a_011.png	500MG
+images\med_b65b6f2d_011.png	Atorvastatin 10mg Tablet
+images\med_f9979576_027.png	TRAMADOL HCL 50MG
+images\med_1e668cd4_005.png	Telma 40 mg
+images\med_933bc2d8_021.png	Franco-IndianPharma
+images\med_2171bf1c_006.png	Pregabalin 75Mg
+images\med_22377fd2_007.png	Aspirin75mg
+images\med_7cbe86e2_024.png	GSK India
+images\med_c4dace63_018.png	sumatriptan 50mg
+images\med_8fb8564a_020.png	100 mcg
+images\med_34c88a9e_028.png	MSD INDIA
+images\med_3a1940c1_020.png	Ranitidine Hcl 150Mg
+images\med_dfe5d351_023.png	Chloroquine Phosphate 250 mg
+images\med_25d144ba_003.png	sun pharma
+images\med_7c3ed740_001.png	METOPROLOL SUCCINATE 25MG
+images\med_db966d24_024.png	25 mcg + 250 mcg
+images\med_a8d76f91_027.png	Norethisterone+EthinylEstradiol1mg+0.035mg
+images\med_b65b6f2d_001.png	atorvastatin calcium 10mg
+images\med_c4bbc34a_001.png	Domperidone 10Mg Tablet
+images\med_0133a0cb_006.png	losartan potassium
+images\med_11787c7d_015.png	cipla
+images\med_f9979576_012.png	Tramadol HCl
+images\med_8b4252b2_017.png	ITRACONAZOLE 100MG
+images\med_f162e9c8_016.png	Olsar 20mg
+images\med_43698167_000.png	Spironolactone 25Mg
+images\med_d9dc56e0_016.png	Nitrofurantoin 100Mg
+images\med_59978ce5_021.png	compound
+images\med_99374b8f_001.png	ASPIRIN
+images\med_f162e9c8_025.png	olmesartan
+images\med_8f908c02_007.png	insulin glargine 100 iu/ml
+images\med_223d0157_002.png	folic acid 5mg
+images\med_223d0157_009.png	FOLIC ACID
+images\med_06d5617a_002.png	ciprofloxacin
+images\med_0f285d70_012.png	BetamethasoneValerate
+images\med_63bdcdad_013.png	MOXIFLOXACIN EYE DROP
+images\med_7d5c2b99_000.png	5Mg
+images\med_81d90895_023.png	Calcirol 60000 IU Granules
+images\med_de61ea08_016.png	Loratadine10mg
+images\med_cb17285c_021.png	GELUSIL MPS TABLET
+images\med_54eb2f38_016.png	combiflam tablet tablet
+images\med_49978219_021.png	5mg
+images\med_c4bbc34a_004.png	DOMPERIDONE 10MG
+images\med_25d144ba_014.png	Ondansetron4mg
+images\med_befd0233_017.png	500Mg
+images\med_e93a0754_006.png	650MG
+images\med_99374b8f_025.png	reckitt benckiser india
+images\med_659bda0a_005.png	Warfarin5mgTablet
+images\med_befd0233_000.png	Calcium Sandoz 500Mg Tablet
+images\med_db3d2896_023.png	Voveran 50 mg Tablet
+images\med_da56c31b_003.png	clonazepam 0.5mg
+images\med_8c9c87eb_021.png	Phenylephrine
+images\med_0f285d70_004.png	GSK INDIA
+images\med_a9a99c83_017.png	Tamsulosin 0.4 mg
+images\med_280c681a_011.png	PiramalHealthcare
+images\med_7c8a8df6_009.png	METROGYL 400MG TABLET
+images\med_7dad208c_021.png	Omeprazole
+images\med_8f908c02_020.png	InsulinGlargine100IU/ml
+images\med_d95c2b97_026.png	metformin hcl
+images\med_696ae1bd_023.png	VitaminD360000IU
+images\med_b65b6f2d_021.png	AtorvastatinCalcium
+images\med_97e744bf_019.png	Cetirizine 10mg
+images\med_dfe5d351_024.png	Lariago 250mg
+images\med_1bffb35a_015.png	MetforminHCl
+images\med_db3d2896_012.png	50Mg
+images\med_294952e4_019.png	GrilinctusSyrupSyrup
+images\med_2aefc1e7_004.png	Amoxicillin 500mg
+images\med_07dac638_011.png	STANDARD
+images\med_dfe5d351_005.png	Chloroquine Phosphate 250mg
+images\med_a8d76f91_005.png	HLL Lifecare
+images\med_7cbe86e2_012.png	500mg
+images\med_de61ea08_012.png	MankindPharma
+images\med_2d223f42_026.png	Terbinafine 250 mg Tablet
+images\med_9b4b4ce2_028.png	Wysolone 5Mg Tablet
+images\med_99374b8f_004.png	Disprin 325Mg Effervescent Tablet
+images\med_97e744bf_010.png	Cetirizine 10 mg
+images\med_db966d24_013.png	Seroflo 250 Inhaler Inhaler
+images\med_99374b8f_016.png	325MG
+images\med_21924655_018.png	DEXAMETHASONE 0.5MG
+images\med_ff4cc516_024.png	Huminsulin N 100IU Injection
+images\med_63bdcdad_005.png	SUN PHARMA
+images\med_25d144ba_022.png	Ondansetron 4 mg
+images\med_d9dc56e0_023.png	nitrofurantoin
+images\med_3a1940c1_029.png	RANITIDINE 150MG TABLET
+images\med_635f0b97_005.png	n-acetylcysteine
+images\med_a960b0ea_027.png	PhenytoinSodium100mg
+images\med_5a6bf418_022.png	Eltroxin 50 mcg Tablet
+images\med_c126403b_026.png	5mg
+images\med_db3d2896_000.png	50MG
+images\med_99374b8f_009.png	disprin 325mg effervescent tablet
+images\med_2aefc1e7_006.png	Ranbaxy
+images\med_1bffb35a_014.png	Metformin500mgTablet
+images\med_da56c31b_013.png	SUN PHARMA
+images\med_7dad208c_018.png	20mg
+images\med_a9a99c83_016.png	TAMSULOSIN 0.4MG
+images\med_35bc51a1_028.png	Pantop 40mg
+images\med_ee8e2396_001.png	IPCA LABORATORIES
+images\med_97e744bf_004.png	CetirizineHCl
+images\med_de61ea08_003.png	mankind pharma
+images\med_289b4229_025.png	GSKIndia
+images\med_ca0a8ab3_003.png	CLINDAMYCIN HCL
+images\med_c4dace63_012.png	Sumatriptan 50mg
+images\med_1e668cd4_002.png	Telma 40Mg Tablet
+images\med_8d46c2a1_010.png	Atenolol 50mg Tablet
+images\med_7d0f40c9_018.png	Cipla
+images\med_7d5c2b99_028.png	Neomercazole 5mg
+images\med_3d1f6924_015.png	NeurobionForte
+images\med_89cd823e_004.png	saridon tablet
+images\med_8b4252b2_010.png	Glenmark
+images\med_8efa4f6a_022.png	Thyronorm 100Mcg Tablet
+images\med_febe41f1_009.png	50Mg
+images\med_8f908c02_012.png	Insulin Glargine 100 Iu/Ml
+images\med_43698167_007.png	SPIRONOLACTONE 25MG
+images\med_7c8a8df6_028.png	Metrogyl 400Mg Tablet
+images\med_9b1b6f11_001.png	acyclovir 400mg tablet
+images\med_81d90895_004.png	calcirol 60000 iu granules
+images\med_f162e9c8_006.png	Olmesartan 20 mg
+images\med_a960b0ea_021.png	PhenytoinSodium
+images\med_f9979576_029.png	Sun Pharma
+images\med_febe41f1_027.png	Sun Pharma
+images\med_294952e4_002.png	dextromethorphan + chlorpheniramine
+images\med_06d5617a_021.png	Ciprofloxacin 500 mg
+images\med_da56c31b_017.png	0.5Mg
+images\med_f9979576_000.png	Tramadol 50Mg
+images\med_7cbe86e2_015.png	paracetamol
+images\med_289b4229_010.png	Zentel400mg
+images\med_7c3ed740_010.png	Metoprolol Succinate 25 mg
+images\med_befd0233_026.png	Calcium Carbonate
+images\med_1bffb35a_000.png	usv pharma
+images\med_34c88a9e_019.png	Januvia 100Mg
+images\med_cc016fbc_002.png	Azithral 500mg Tablet
+images\med_11787c7d_001.png	200MG
+images\med_7d5c2b99_010.png	Carbimazole 5Mg
+images\med_0f1728cf_006.png	methyl prednisolone 4mg
+images\med_89cd823e_002.png	250mg+150mg+50mg
+images\med_f12eb12e_008.png	Rosuvastatin10mgTablet
+images\med_c6d7e0de_026.png	Lactulose 10g Syrup
+images\med_06d5617a_023.png	Sun Pharma
+images\med_168cba08_001.png	promethazine hcl 25mg
+images\med_25d144ba_012.png	ONDANSETRON 4MG TABLET
+images\med_deb81d93_010.png	BETAMETHASONE 0.1%
+images\med_738912bb_022.png	OLANZAPINE 5MG TABLET
+images\med_223d0157_001.png	5Mg
+images\med_11787c7d_020.png	Ferrous Sulphate 200 mg Tablet
+images\med_9b1b6f11_009.png	Acyclovir 400 mg
+images\med_7f6dd7f5_005.png	BRUFEN 400MG TABLET
+images\med_cc016fbc_026.png	500 mg
+images\med_5d008352_023.png	20 mg
+images\med_5a6bf418_001.png	ELTROXIN 50MCG TABLET
+images\med_deb81d93_004.png	0.1%
+images\med_2171bf1c_008.png	75MG
+images\med_34c88a9e_002.png	Sitagliptin100mg
+images\med_59978ce5_015.png	benadryl cough syrup
+images\med_7c8a8df6_005.png	Metrogyl400mg
+images\med_7cbe86e2_006.png	paracetamol 500mg
+images\med_e0edd5c4_006.png	200 mg
+images\med_738912bb_003.png	Olanzapine 5mg
+images\med_35bc51a1_011.png	Pantoprazole 40 mg
+images\med_294952e4_022.png	Grilinctus Syrup Syrup
+images\med_cc016fbc_023.png	Azithromycin
+images\med_febe41f1_002.png	Sertraline Hcl
+images\med_be0f137d_021.png	Shelcal 500Mg Tablet
+images\med_7dad208c_026.png	DR. REDDY'S
+images\med_cc016fbc_021.png	Azithromycin500mg
+images\med_11787c7d_006.png	FerrousSulphate200mgTablet
+images\med_febe41f1_020.png	Sertraline 50Mg
+images\med_22377fd2_029.png	USVPharma
+images\med_25d144ba_015.png	Ondansetron4mgTablet
+images\med_9b4b4ce2_010.png	Wysolone5mgTablet
+images\med_2291c346_001.png	liquid paraffin + milk of magnesia
+images\med_6678f79a_019.png	Allegra 120 mg
+images\med_294952e4_005.png	DEXTROMETHORPHAN + CHLORPHENIRAMINE COMPOUND
+images\med_2291c346_024.png	COMPOUND
+images\med_9b4b4ce2_014.png	Wysolone 5 mg
+images\med_5a846311_010.png	OSELTAMIVIR 75MG
+images\med_da56c31b_019.png	Sun Pharma
+images\med_c4c13132_000.png	Digoxin 0.25mg Tablet
+images\med_06d5617a_014.png	CIFRAN 500MG TABLET

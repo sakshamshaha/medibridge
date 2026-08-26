@@ -1,33 +1,46 @@
 import sqlite3
+import re
 from rapidfuzz import process, fuzz
 from typing import List, Dict, Optional
+
+def normalize_text(text: str) -> str:
+    """Context-aware text normalization."""
+    # Lowercase
+    text = text.lower()
+    # Normalize units
+    text = re.sub(r'\b(mg|g|mcg|ml|%|iu)\b', r' \1 ', text)
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
 
 class MedicineDatabase:
     def __init__(self, db_path: str):
         self.db_path = db_path
     
     def get_all_medicines(self) -> List[Dict]:
-        """Fetches all medicines from the SQLite DB for fuzzy matching."""
         conn = sqlite3.connect(self.db_path)
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
         
-        # Note: Depending on your exact Prisma schema, this query might need adjustment.
-        # This assumes a 'Medicine' table exists with 'id', 'name', 'manufacturer', 'strength'
         try:
-            cursor.execute("SELECT id, name, manufacturer, strength FROM Medicine")
+            cursor.execute("SELECT id, name, manufacturer, strength, genericName, barcodeGtin FROM Medicine")
             rows = cursor.fetchall()
             return [dict(row) for row in rows]
         except sqlite3.OperationalError:
-            # Fallback if table doesn't match perfectly during phase 1
-            return []
+            # Fallback for old schema
+            try:
+                cursor.execute("SELECT id, name FROM Medicine")
+                rows = cursor.fetchall()
+                return [dict(row) for row in rows]
+            except sqlite3.OperationalError:
+                return []
         finally:
             conn.close()
 
-def search_candidates(ocr_texts: List[str], db_path: str) -> Optional[Dict]:
+def search_candidates(ocr_results: List[Dict], db_path: str) -> Optional[Dict]:
     """
-    Takes the raw OCR text lines and fuzzy matches them against the DB.
-    Returns the best matching medicine candidate.
+    Takes OCR results [{'text': '', 'confidence': 0.0}]
+    Returns the best candidate with similarity scores for fields.
     """
     db = MedicineDatabase(db_path)
     medicines = db.get_all_medicines()
@@ -35,30 +48,28 @@ def search_candidates(ocr_texts: List[str], db_path: str) -> Optional[Dict]:
     if not medicines:
         return None
         
-    # Flatten all names to search against
-    medicine_names = {med['name']: med for med in medicines if med.get('name')}
-    
     best_candidate = None
     highest_score = 0
     
-    # Very basic candidate search: find if any OCR line strongly matches a medicine name
-    for line in ocr_texts:
-        if len(line) < 3:
-            continue
-            
-        # ExtractOne returns (match, score, index)
-        result = process.extractOne(
-            line, 
-            medicine_names.keys(), 
-            scorer=fuzz.WRatio
-        )
+    ocr_texts_normalized = [normalize_text(r['text']) for r in ocr_results if len(r['text']) >= 3]
+    raw_texts = " ".join([r['text'] for r in ocr_results])
+    norm_texts = " ".join(ocr_texts_normalized)
+
+    for med in medicines:
+        score = 0
+        name_sim = fuzz.token_set_ratio(str(med.get('name', '')).lower(), norm_texts) if med.get('name') else 0
+        strength_sim = fuzz.token_set_ratio(str(med.get('strength', '')).lower(), norm_texts) if med.get('strength') else 0
+        mfr_sim = fuzz.token_set_ratio(str(med.get('manufacturer', '')).lower(), norm_texts) if med.get('manufacturer') else 0
         
-        if result:
-            match_str, score, _ = result
-            if score > highest_score:
-                highest_score = score
-                best_candidate = medicine_names[match_str]
-                # We can store the similarity score inside the dictionary for the scorer phase
-                best_candidate['_similarity'] = score
+        # Simple weighted aggregate to find best candidate
+        total_sim = name_sim * 0.5 + strength_sim * 0.3 + mfr_sim * 0.2
+        
+        if total_sim > highest_score:
+            highest_score = total_sim
+            best_candidate = med
+            best_candidate['_name_sim'] = name_sim
+            best_candidate['_strength_sim'] = strength_sim
+            best_candidate['_mfr_sim'] = mfr_sim
+            best_candidate['_similarity'] = total_sim
                 
     return best_candidate

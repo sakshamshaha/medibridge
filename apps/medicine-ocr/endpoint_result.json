@@ -1,0 +1,42 @@
+{
+  "status": "needs_confirmation",
+  "medicine": {
+    "name": "Levobex-5",
+    "generic_name": "Levocetirizine",
+    "strength": "5 mg",
+    "dosage_form": null,
+    "manufacturer": "Globex Healthcare"
+  },
+  "evidence": {
+    "ocr": [
+      "2404MFG.05/2024 EXP.04",
+      "eaare",
+      "GlobeX",
+      "B",
+      "Dihydride",
+      "Levine",
+      "Levobex-5",
+      "级",
+      "eC",
+      "Globex",
+      "Healthcare",
+      "da",
+      "AXES",
+      "Kogola",
+      "Healicor",
+      " 90",
+      "socct",
+      "levcelnne",
+      "Rs 36.0",
+      "Drapplop pobpeas",
+      "",
+      "Levoobox]"
+    ],
+    "barcode": null,
+    "ocr_confidence": 0.6293009927665646,
+    "candidate_similarity": 0.7118421052631578,
+    "model_agreement": 1.0
+  },
+  "warnings": [],
+  "request_id": "test1234"
+}

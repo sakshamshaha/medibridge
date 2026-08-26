@@ -24,6 +24,11 @@ def get_image_variants(image: np.ndarray) -> List[np.ndarray]:
     cl1_bgr = cv2.cvtColor(cl1, cv2.COLOR_GRAY2BGR)
     variants.append(cl1_bgr)
     
+    # Variant 3: Sharpened
+    kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]])
+    sharpened = cv2.filter2D(image, -1, kernel)
+    variants.append(sharpened)
+    
     return variants
 
 def calculate_quality(image: np.ndarray) -> dict:
