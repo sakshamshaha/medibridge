@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -14,6 +14,8 @@ export default function Homepage() {
   const frameCount = 240;
   const currentFrame = useRef({ frame: 1 });
   const preloadedImages = useRef<HTMLImageElement[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
 
   const renderFrame = (index: number) => {
     const canvas = canvasRef.current;
@@ -43,23 +45,38 @@ export default function Homepage() {
   };
 
   useEffect(() => {
+    let loadedCount = 0;
+    const promises = [];
+    
     // Preload all 240 frames
     for (let i = 1; i <= 240; i++) {
       const img = new Image();
       img.src = `/newhomepageurl/ezgif-frame-${i.toString().padStart(3, "0")}.jpg`;
       preloadedImages.current[i] = img;
+      
+      const p = img.decode().catch(() => {
+        // Fallback for browsers that don't support .decode()
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve; // Resolve on error too, to avoid hanging
+        });
+      }).then(() => {
+        loadedCount++;
+        setLoadProgress(Math.floor((loadedCount / 240) * 100));
+      });
+      
+      promises.push(p);
     }
     
-    // Initial frame
-    const img = preloadedImages.current[1];
-    if (img.complete) {
+    Promise.all(promises).then(() => {
+      setIsLoading(false);
       renderFrame(1);
-    } else {
-      img.addEventListener('load', () => renderFrame(1), { once: true });
-    }
+    });
   }, []);
 
   useGSAP(() => {
+    if (isLoading) return; // Prevent GSAP from initializing while images are streaming
+    
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top top",
@@ -69,15 +86,27 @@ export default function Homepage() {
         frame: frameCount,
         ease: "none",
         onUpdate: () => {
-          // Use Math.round directly instead of GSAP's snap plugin for better performance
-          renderFrame(Math.round(currentFrame.current.frame));
+          // Double-buffering wrap to ensure we never block main thread
+          requestAnimationFrame(() => {
+            renderFrame(Math.round(currentFrame.current.frame));
+          });
         }
       })
     });
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [isLoading] });
 
   return (
     <div className="font-sans antialiased min-h-screen relative flex flex-col p-4 sm:p-8 bg-[#0f172a] text-[#f8fafc]">
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[100] bg-[#0f172a] flex flex-col items-center justify-center">
+          <div className="w-64 h-2 bg-white/10 rounded-full overflow-hidden mb-4">
+            <div className="h-full bg-[#2dd4bf] transition-all duration-300" style={{ width: `${loadProgress}%` }}></div>
+          </div>
+          <p className="text-white/60 text-sm font-bold tracking-widest uppercase animate-pulse">Initializing Assets... {loadProgress}%</p>
+        </div>
+      )}
+
       {/* Background Glow */}
       <div className="home-glow-accent fixed top-0"></div>
       
