@@ -98,14 +98,16 @@ export default function Homepage() {
   return (
     <div className="font-sans antialiased min-h-screen relative flex flex-col p-4 sm:p-8 bg-[#0f172a] text-[#f8fafc]">
       {/* Loading Overlay */}
-      {isLoading && (
-        <div className="fixed inset-0 z-[100] bg-[#0f172a] flex flex-col items-center justify-center">
-          <div className="w-64 h-2 bg-white/10 rounded-full overflow-hidden mb-4">
-            <div className="h-full bg-[#2dd4bf] transition-all duration-300" style={{ width: `${loadProgress}%` }}></div>
-          </div>
-          <p className="text-white/60 text-sm font-bold tracking-widest uppercase animate-pulse">Initializing Assets... {loadProgress}%</p>
+      <div 
+        className={`fixed inset-0 z-[100] bg-[#0f172a] flex flex-col items-center justify-center transition-opacity duration-500 ${
+          isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="w-64 h-2 bg-white/10 rounded-full overflow-hidden mb-4">
+          <div className="h-full bg-[#2dd4bf] transition-all duration-300" style={{ width: `${loadProgress}%` }}></div>
         </div>
-      )}
+        <p className="text-white/60 text-sm font-bold tracking-widest uppercase animate-pulse">Initializing Assets... {loadProgress}%</p>
+      </div>
 
       {/* Background Glow */}
       <div className="home-glow-accent fixed top-0"></div>
