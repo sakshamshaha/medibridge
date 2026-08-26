@@ -3,53 +3,28 @@
 import React from "react";
 import { CustomerTopNav } from "../../components/CustomerLayoutUI";
 import Link from "next/link";
-import { Search, MapPin, Star, Award, Clock } from "lucide-react";
+import { Search, MapPin, Star, Award, Clock, Loader2 } from "lucide-react";
+import useSWR from "swr";
+import { fetcher } from "../../lib/api";
 
 export default function DoctorInquiryPage() {
-  const doctors = [
-    {
-      id: "d1",
-      name: "Dr. Aisha Rahman",
-      specialty: "Urologist",
-      qualifications: "MBBS, MS, MCh (Urology)",
-      experience: "15+ Years",
-      rating: 4.9,
-      reviews: 128,
-      location: "Apollo Hospitals",
-      distance: "2.5 km",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop",
-      procedures: ["PCNL", "RIRS", "Kidney Transplant"],
-      availability: "Available Today"
-    },
-    {
-      id: "d2",
-      name: "Dr. Vikram Singh",
-      specialty: "Endourologist",
-      qualifications: "MBBS, MS, Fellowship in Endourology",
-      experience: "10 Years",
-      rating: 4.7,
-      reviews: 84,
-      location: "Max Super Speciality",
-      distance: "4.1 km",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=200&auto=format&fit=crop",
-      procedures: ["URS", "Laser Lithotripsy"],
-      availability: "Next Available: Tomorrow"
-    },
-    {
-      id: "d3",
-      name: "Dr. Emily Chen",
-      specialty: "Urologist",
-      qualifications: "MD, Board Certified Urology",
-      experience: "12 Years",
-      rating: 4.8,
-      reviews: 105,
-      location: "Fortis Escorts",
-      distance: "6.0 km",
-      image: "https://images.unsplash.com/photo-1594824436998-df596db30a84?q=80&w=200&auto=format&fit=crop",
-      procedures: ["PCNL", "URS"],
-      availability: "Available Today"
-    }
-  ];
+  const { data: dbDoctors, error, isLoading } = useSWR('/doctors', fetcher);
+
+  // Map backend data to UI format, providing defaults for fields not yet in the DB
+  const doctors = dbDoctors?.map((doc: any) => ({
+    id: doc.id,
+    name: doc.name,
+    specialty: doc.specialty || "Specialist",
+    qualifications: doc.qualifications,
+    experience: `${doc.experienceYears}+ Years`,
+    rating: 4.5 + Math.random() * 0.5, // Dummy rating for now
+    reviews: Math.floor(Math.random() * 200) + 10, // Dummy reviews
+    location: doc.hospitals && doc.hospitals.length > 0 ? doc.hospitals[0].hospital.name : "Multiple Locations",
+    distance: `${(Math.random() * 10).toFixed(1)} km`,
+    image: doc.photo || "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=200&auto=format&fit=crop",
+    procedures: ["Consultation"],
+    availability: "Available Today"
+  })) || [];
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -139,7 +114,9 @@ export default function DoctorInquiryPage() {
           {/* Results List */}
           <div className="flex-1 space-y-6">
             <div className="flex justify-between items-center mb-2">
-              <h2 className="font-headline-md text-headline-md font-bold text-on-surface">12 Specialists Found</h2>
+              <h2 className="font-headline-md text-headline-md font-bold text-on-surface">
+                {isLoading ? "Searching..." : `${doctors.length} Specialists Found`}
+              </h2>
               <select className="bg-surface-container-lowest border border-border-subtle rounded-md px-3 py-1.5 text-sm font-body-md focus:outline-none focus:border-primary">
                 <option>Sort by: Relevance</option>
                 <option>Sort by: Rating</option>
@@ -147,7 +124,26 @@ export default function DoctorInquiryPage() {
               </select>
             </div>
 
-            {doctors.map((doc, idx) => (
+            {isLoading && (
+              <div className="flex justify-center items-center py-20 text-secondary">
+                <Loader2 className="w-8 h-8 animate-spin mr-2" />
+                <span className="font-body-lg">Loading specialists...</span>
+              </div>
+            )}
+
+            {error && (
+              <div className="bento-card p-6 text-center text-error">
+                <p>Failed to load doctors. Please try again later.</p>
+              </div>
+            )}
+
+            {!isLoading && !error && doctors.length === 0 && (
+              <div className="bento-card p-6 text-center text-secondary">
+                <p>No specialists found.</p>
+              </div>
+            )}
+
+            {!isLoading && !error && doctors.map((doc: any, idx: number) => (
               <div key={doc.id} className="bento-card p-6 flex flex-col md:flex-row gap-6 items-start bento-hover animate-in slide-in-from-bottom-4 duration-500 fill-mode-both" style={{ animationDelay: `${idx * 100}ms` }}>
                 
                 {/* Image */}
