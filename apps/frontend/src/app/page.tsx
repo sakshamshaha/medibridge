@@ -2,16 +2,17 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { useScroll, useMotionValueEvent, useSpring } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Homepage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ 
-    target: containerRef, 
-    offset: ["start start", "end end"] 
-  });
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 70, damping: 20, mass: 0.5 });
+  const frameCount = 240;
+  const currentFrame = useRef({ frame: 1 });
   const preloadedImages = useRef<HTMLImageElement[]>([]);
 
   const renderFrame = (index: number) => {
@@ -23,18 +24,21 @@ export default function Homepage() {
     const img = preloadedImages.current[index];
     if (!img) return;
 
-    if (img.complete && img.naturalWidth > 0) {
-      if (canvas.width !== img.width) canvas.width = img.width;
-      if (canvas.height !== img.height) canvas.height = img.height;
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(img, 0, 0);
-    } else {
-      img.onload = () => {
-        if (canvas.width !== img.width) canvas.width = img.width;
-        if (canvas.height !== img.height) canvas.height = img.height;
+    const draw = () => {
+      // Only resize if necessary (resizing is expensive and causes reflow)
+      if (canvas.width !== img.naturalWidth || canvas.height !== img.naturalHeight) {
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+      } else {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(img, 0, 0);
-      };
+      }
+      context.drawImage(img, 0, 0);
+    };
+
+    if (img.complete && img.naturalWidth > 0) {
+      draw();
+    } else {
+      img.onload = draw;
     }
   };
 
@@ -55,12 +59,22 @@ export default function Homepage() {
     }
   }, []);
 
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
-    const frameCount = 240;
-    const progress = Math.min(1, Math.max(0, latest));
-    const frameIndex = Math.floor(progress * (frameCount - 1));
-    requestAnimationFrame(() => renderFrame(frameIndex + 1));
-  });
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.15, // Reduced scrub for much tighter, smoother response
+      animation: gsap.to(currentFrame.current, {
+        frame: frameCount,
+        ease: "none",
+        onUpdate: () => {
+          // Use Math.round directly instead of GSAP's snap plugin for better performance
+          renderFrame(Math.round(currentFrame.current.frame));
+        }
+      })
+    });
+  }, { scope: containerRef });
 
   return (
     <div className="font-sans antialiased min-h-screen relative flex flex-col p-4 sm:p-8 bg-[#0f172a] text-[#f8fafc]">
