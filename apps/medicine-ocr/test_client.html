@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine OCR Tester</title>
+    <style>
+        body { font-family: system-ui; background: #0f172a; color: white; text-align: center; padding: 20px; }
+        .btn { background: #2dd4bf; color: black; padding: 15px 30px; border-radius: 8px; font-weight: bold; font-size: 1.2rem; cursor: pointer; border: none; display: inline-block; width: 100%; box-sizing: border-box; }
+        #preview { max-width: 100%; margin-top: 20px; border-radius: 8px; display: none; }
+        #results { margin-top: 20px; text-align: left; background: #1e293b; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-family: monospace; display: none; }
+    </style>
+</head>
+<body>
+    <h1>Blister OCR Tester</h1>
+    <p>Snap a picture of a medicine strip</p>
+    
+    <label for="camera" class="btn">Take Photo</label>
+    <input type="file" id="camera" accept="image/*" capture="environment" style="display: none;">
+    
+    <img id="preview" />
+    <button id="upload" class="btn" style="display: none; margin-top: 15px; background: #3b82f6; color: white;">Run OCR</button>
+
+    <div id="results"></div>
+
+    <script>
+        const camera = document.getElementById('camera');
+        const preview = document.getElementById('preview');
+        const upload = document.getElementById('upload');
+        const results = document.getElementById('results');
+        let selectedFile = null;
+
+        camera.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                selectedFile = e.target.files[0];
+                preview.src = URL.createObjectURL(selectedFile);
+                preview.style.display = 'block';
+                upload.style.display = 'block';
+                results.style.display = 'none';
+            }
+        });
+
+        upload.addEventListener('click', async () => {
+            if (!selectedFile) return;
+            
+            upload.innerText = "Analyzing (may take a moment)...";
+            upload.disabled = true;
+            results.style.display = 'block';
+            results.innerText = "Processing image variants and running OCR...";
+
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+            formData.append('market', 'IN');
+            formData.append('language_hint', 'en');
+
+            try {
+                // Ensure this points to the local IP of the computer running the FastAPI server
+                const response = await fetch('/api/v1/medicine/identify', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                results.innerText = JSON.stringify(data, null, 2);
+            } catch (err) {
+                results.innerText = "Error connecting to OCR Service: " + err.message + "\nMake sure the Python FastAPI server is running!";
+            } finally {
+                upload.innerText = "Run OCR Again";
+                upload.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
