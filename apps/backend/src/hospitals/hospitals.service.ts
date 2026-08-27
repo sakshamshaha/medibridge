@@ -5,37 +5,48 @@ import { PrismaService } from '../prisma/prisma.service';
 export class HospitalsService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
-    const procedures = await this.prisma.procedure.findMany({
-      include: {
-        hospital: true,
-      },
-    });
-
-    // Group by procedure to match frontend format
-    const grouped: any[] = [];
+  async findAll(city?: string, q?: string) {
+    const whereClause: any = {};
+    if (city) {
+      whereClause.city = city;
+    }
+    if (q) {
+      whereClause.OR = [
+        { name: { contains: q } },
+        { specialties: { contains: q } },
+        { address: { contains: q } }
+      ];
+    }
     
-    procedures.forEach(proc => {
-      let existing = grouped.find(g => g.name === proc.name);
-      if (!existing) {
-        existing = {
-          id: proc.name.toLowerCase(),
-          name: proc.name,
-          description: `Treatment for ${JSON.parse(proc.diseaseTags)[0]}`,
-          hospitals: []
-        };
-        grouped.push(existing);
-      }
-      
-      existing.hospitals.push({
-        id: proc.hospital.id,
-        name: proc.hospital.name,
-        type: proc.hospital.type,
-        distance: "2.5 km", // mock for now
-        treated: proc.hospital.patientsTreated,
-      });
+    const hospitals = await this.prisma.hospital.findMany({
+      where: whereClause,
+      // In a real app we might paginate this or limit it
+      take: 200,
     });
 
-    return grouped;
+    // We return a single "group" to match the frontend's expected Bento Grid structure
+    return [
+      {
+        id: 'all-hospitals',
+        name: 'Hospitals',
+        description: city ? `Available facilities in ${city}` : 'All available facilities',
+        hospitals: hospitals.map(h => ({
+          id: h.id,
+          name: h.name,
+          type: h.type,
+          distance: "2.5 km", // mock for now
+          treated: h.patientsTreated || '0',
+          photo: h.photos ? h.photos : null,
+          latitude: h.latitude,
+          longitude: h.longitude,
+          address: h.address,
+          googleRating: h.googleRating,
+          googleUserRatingsTotal: h.googleUserRatingsTotal,
+          googleFormattedAddress: h.googleFormattedAddress,
+          googlePhotos: h.googlePhotos ? JSON.parse(h.googlePhotos) : [],
+          googleReviews: h.googleReviews ? JSON.parse(h.googleReviews) : []
+        }))
+      }
+    ];
   }
 }

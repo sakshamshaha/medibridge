@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { CustomerTopNav } from "../../components/CustomerLayoutUI";
 import Link from "next/link";
 import { Search, MapPin, Star, Award, Clock, Loader2 } from "lucide-react";
@@ -8,7 +8,16 @@ import useSWR from "swr";
 import { fetcher } from "../../lib/api";
 
 export default function DoctorInquiryPage() {
-  const { data: dbDoctors, error, isLoading } = useSWR('/doctors', fetcher);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [locationQuery, setLocationQuery] = useState("");
+  
+  let endpoint = '/doctors';
+  const params = new URLSearchParams();
+  if (searchQuery) params.append('q', searchQuery);
+  if (locationQuery) params.append('city', locationQuery);
+  if (params.toString()) endpoint += `?${params.toString()}`;
+
+  const { data: dbDoctors, error, isLoading } = useSWR(endpoint, fetcher);
 
   // Map backend data to UI format, providing defaults for fields not yet in the DB
   const doctors = dbDoctors?.map((doc: any) => ({
@@ -19,7 +28,7 @@ export default function DoctorInquiryPage() {
     experience: `${doc.experienceYears}+ Years`,
     rating: 4.5 + Math.random() * 0.5, // Dummy rating for now
     reviews: Math.floor(Math.random() * 200) + 10, // Dummy reviews
-    location: doc.hospitals && doc.hospitals.length > 0 ? doc.hospitals[0].hospital.name : "Multiple Locations",
+    location: doc.hospitals && doc.hospitals.length > 0 ? doc.hospitals[0] : "Multiple Locations",
     distance: `${(Math.random() * 10).toFixed(1)} km`,
     image: doc.photo || "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=200&auto=format&fit=crop",
     procedures: ["Consultation"],
@@ -52,7 +61,8 @@ export default function DoctorInquiryPage() {
                 className="w-full bg-surface-container-lowest border border-border-subtle rounded-full md:rounded-r-none py-4 pl-16 pr-6 font-body-lg text-body-lg text-on-surface shadow-sm focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container transition-all placeholder:text-secondary"
                 placeholder="Doctor name, specialty..."
                 type="text"
-                defaultValue="Urologist"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <div className="relative md:w-64">
@@ -61,9 +71,10 @@ export default function DoctorInquiryPage() {
               </div>
               <input
                 className="w-full bg-surface-container-lowest border border-border-subtle rounded-full md:rounded-l-none md:border-l-0 py-4 pl-14 pr-6 font-body-lg text-body-lg text-on-surface shadow-sm focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container transition-all placeholder:text-secondary"
-                placeholder="Location"
+                placeholder="Location (e.g. Gwalior)"
                 type="text"
-                defaultValue="New Delhi"
+                value={locationQuery}
+                onChange={(e) => setLocationQuery(e.target.value)}
               />
             </div>
             <button className="bg-primary text-surface-white font-label-caps text-label-caps px-8 py-4 rounded-full hover:bg-surface-tint transition-colors cursor-pointer shadow-sm w-full md:w-auto mt-2 md:mt-0">

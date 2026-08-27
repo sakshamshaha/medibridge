@@ -5,8 +5,28 @@ import { PrismaService } from '../prisma/prisma.service';
 export class DoctorsService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(q?: string, city?: string) {
+    const whereClause: any = {};
+    
+    if (q) {
+      whereClause.OR = [
+        { name: { contains: q } },
+        { qualifications: { contains: q } }
+      ];
+    }
+
+    if (city) {
+      whereClause.hospitals = {
+        some: {
+          hospital: {
+            city: { contains: city }
+          }
+        }
+      };
+    }
+
     const doctors = await this.prisma.doctor.findMany({
+      where: whereClause,
       include: {
         hospitals: {
           include: {

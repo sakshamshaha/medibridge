@@ -8,13 +8,14 @@
     "generate": "npx prisma@5.22.0 generate"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0"
+    "@prisma/client": "^5.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/node": "^24.13.3",
     "prisma": "^5.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
-    "@types/node": "^24.0.0"
+    "typescript": "^5.9.3"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

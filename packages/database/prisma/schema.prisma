@@ -23,18 +23,41 @@ model User {
 }
 
 model Hospital {
-  id               String              @id @default(uuid())
-  name             String
-  type             String              // e.g. private, govt
-  location         String              // Could be JSON or specialized PostGIS type later
-  licenses         String
-  patientsTreated  String              // e.g. "250+"
-  photos           String            // URLs to S3
-  procedures       Procedure[]
-  doctors          DoctorHospital[]
-  insurance        InsuranceProvider[]
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
+  id                 String              @id @default(uuid())
+  externalId         String?
+  name               String
+  type               String              // e.g. private, govt
+  address            String              @default("")
+  city               String              @default("")
+  latitude           Float?
+  longitude          Float?
+  phone              String?
+  specialties        String?             // Store as JSON array string or comma-separated
+  licenses           String?
+  patientsTreated    String?             // e.g. "250+"
+  photos             String?             // URLs to S3
+  website            String?
+  beds               Int?
+  notes              String?
+  empanelment        String?
+  verificationSource String?
+  procedures         Procedure[]
+  doctors            DoctorHospital[]
+  insurance          InsuranceProvider[]
+  
+  // Google Places API integration
+  placeId                String?
+  googleRating           Float?
+  googleUserRatingsTotal Int?
+  googleReviews          String?             // JSON array string
+  googlePhotos           String?             // JSON array string
+  googleFormattedAddress String?
+  lastSyncedAt           DateTime?
+
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+
+  @@unique([externalId, city])
 }
 
 model Procedure {
@@ -50,6 +73,7 @@ model Procedure {
 
 model Doctor {
   id               String            @id @default(uuid())
+  externalId       String?           @unique
   name             String
   photo            String?
   qualifications   String
@@ -77,9 +101,29 @@ model InsuranceProvider {
 
 model Medicine {
   id                  String             @id @default(uuid())
+  externalId          String?            @unique
   name                String
-  scheduleClass       String?
+  genericName         String?
+  strength            String?
+  dosageForm          String?
+  manufacturer        String?
+  category            String?
+  therapeuticClass    String?
+  packSize            String?
   requiresPrescription Boolean           @default(false)
+  mrp                 Float?
+  sellingPrice        Float?
+  discount            Float?
+  uses                String?
+  description         String?
+  imageFilename       String?
+  imageSource         String?
+  sourceUrl           String?
+  catalogStatus       String?
+  lastUpdatedDate     DateTime?
+  isDemoData          Boolean            @default(false)
+  
+  scheduleClass       String?
   stocks              RetailerStock[]
   demandNodeItems     DemandNodeItem[]
   billItems           BillItem[]

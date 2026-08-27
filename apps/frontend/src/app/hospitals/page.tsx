@@ -8,7 +8,17 @@ import { fetcher } from "../../lib/api";
 import { Loader2 } from "lucide-react";
 
 export default function HospitalsPage() {
-  const { data: procedureGroups, error, isLoading } = useSWR('/hospitals', fetcher);
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedHospital, setSelectedHospital] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  let endpoint = '/hospitals';
+  const params = new URLSearchParams();
+  if (selectedCity) params.append('city', selectedCity);
+  if (searchQuery) params.append('q', searchQuery);
+  if (params.toString()) endpoint += `?${params.toString()}`;
+  
+  const { data: procedureGroups, error, isLoading } = useSWR(endpoint, fetcher);
   return (
     <div className="flex flex-col min-h-screen">
       <CustomerTopNav />
@@ -33,6 +43,8 @@ export default function HospitalsPage() {
             </div>
             <input 
               type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search hospitals, locations, or specialties..." 
               className="flex-1 py-4 px-2 outline-none bg-transparent font-body-md text-on-surface"
             />
@@ -50,6 +62,23 @@ export default function HospitalsPage() {
                 Proximity: <span className="font-bold">&lt; 10 Miles</span>
               </span>
             </button>
+            
+            <div className="relative">
+              <select 
+                value={selectedCity} 
+                onChange={(e) => setSelectedCity(e.target.value)}
+                className="appearance-none flex items-center gap-2 bg-surface-container-lowest text-secondary pl-11 pr-10 py-3 rounded-full border border-border-subtle hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer shadow-sm outline-none font-label-caps text-label-caps uppercase"
+              >
+                <option value="">City: All</option>
+                <option value="Gwalior">City: Gwalior</option>
+                <option value="Indore">City: Indore</option>
+                <option value="Bhopal">City: Bhopal</option>
+                <option value="Ujjain">City: Ujjain</option>
+                <option value="Jabalpur">City: Jabalpur</option>
+              </select>
+              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] text-secondary pointer-events-none">location_city</span>
+              <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[20px] text-secondary pointer-events-none">arrow_drop_down</span>
+            </div>
             
             <button className="flex items-center gap-2 bg-surface-container-lowest text-secondary px-5 py-3 rounded-full border border-border-subtle hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer shadow-sm">
               <span className="material-symbols-outlined text-[20px]">payments</span>
@@ -97,9 +126,9 @@ export default function HospitalsPage() {
                 <div className="flex-grow h-px bg-border-subtle hidden md:block opacity-50"></div>
               </div>
               
-              <div className="flex overflow-x-auto gap-bento-gap pb-6 hide-scrollbar snap-x">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-6">
                 {group.hospitals?.map((hospital: any) => (
-                  <div key={hospital.id} className="bento-card min-w-[320px] md:min-w-[400px] w-full md:w-1/3 flex flex-col gap-4 bento-hover snap-start shrink-0 p-0 overflow-hidden group">
+                  <div key={hospital.id} className="bento-card w-full flex flex-col gap-4 bento-hover p-0 overflow-hidden group">
                     <div className="h-40 relative overflow-hidden">
                       <img
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -137,7 +166,7 @@ export default function HospitalsPage() {
                             {hospital.treated}
                           </span>
                         </div>
-                        <button className="bg-primary text-surface-white font-label-caps text-[12px] px-6 py-3 rounded-full hover:bg-surface-tint transition-colors cursor-pointer shadow-sm uppercase tracking-wider">
+                        <button onClick={() => setSelectedHospital(hospital)} className="bg-primary text-surface-white font-label-caps text-[12px] px-6 py-3 rounded-full hover:bg-surface-tint transition-colors cursor-pointer shadow-sm uppercase tracking-wider inline-block">
                           View Details
                         </button>
                       </div>
@@ -149,6 +178,93 @@ export default function HospitalsPage() {
           ))}
         </div>
       </main>
+
+      {/* Hospital Details Modal */}
+      {selectedHospital && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-surface-container-lowest rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-xl flex flex-col relative">
+            <button 
+              onClick={() => setSelectedHospital(null)}
+              className="absolute top-4 right-4 bg-surface-container hover:bg-surface-container-high p-2 rounded-full transition-colors cursor-pointer z-10"
+            >
+              <span className="material-symbols-outlined text-on-surface">close</span>
+            </button>
+            
+            {/* Header Images / Photos */}
+            {selectedHospital.googlePhotos && selectedHospital.googlePhotos.length > 0 ? (
+              <div className="flex overflow-x-auto snap-x h-64 bg-surface-container-low hide-scrollbar">
+                {selectedHospital.googlePhotos.map((ref: string, idx: number) => (
+                  <img 
+                    key={idx} 
+                    src={`/api/google-photo?ref=${ref}`} 
+                    alt="Hospital facility" 
+                    className="h-full object-cover shrink-0 snap-start w-full md:w-1/2 lg:w-1/3 border-r border-border-subtle"
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="h-48 bg-surface-container-high flex items-center justify-center">
+                <span className="material-symbols-outlined text-[48px] text-tertiary">local_hospital</span>
+              </div>
+            )}
+            
+            <div className="p-8">
+              <div className="flex justify-between items-start gap-4 mb-6">
+                <div>
+                  <h2 className="text-headline-md font-headline-md font-bold text-on-surface mb-2">{selectedHospital.name}</h2>
+                  <p className="text-secondary font-body-md flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[18px]">location_on</span>
+                    {selectedHospital.googleFormattedAddress || selectedHospital.address}
+                  </p>
+                </div>
+                {selectedHospital.googleRating && (
+                  <div className="bg-primary-container text-primary-fixed-variant px-4 py-2 rounded-xl flex flex-col items-center shadow-sm">
+                    <div className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                      <span className="font-bold text-[18px]">{selectedHospital.googleRating}</span>
+                    </div>
+                    <span className="text-[12px] font-label-caps uppercase">{selectedHospital.googleUserRatingsTotal} Reviews</span>
+                  </div>
+                )}
+              </div>
+              
+              <div className="flex gap-4 mb-8">
+                <a 
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${selectedHospital.latitude && selectedHospital.longitude ? `${selectedHospital.latitude},${selectedHospital.longitude}` : encodeURIComponent(selectedHospital.googleFormattedAddress || selectedHospital.address)}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-primary text-surface-white px-6 py-3 rounded-full font-label-caps uppercase text-[14px] flex items-center gap-2 hover:bg-surface-tint transition-colors shadow-md"
+                >
+                  <span className="material-symbols-outlined">directions</span>
+                  Get Directions
+                </a>
+              </div>
+
+              {selectedHospital.googleReviews && selectedHospital.googleReviews.length > 0 && (
+                <div>
+                  <h3 className="font-headline-sm text-headline-sm text-on-surface mb-4">Customer Reviews</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {selectedHospital.googleReviews.slice(0, 4).map((review: any, idx: number) => (
+                      <div key={idx} className="bg-surface-container-low p-4 rounded-2xl border border-border-subtle">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="font-bold text-on-surface text-[14px]">{review.author_name}</span>
+                          <span className="text-tertiary text-[12px]">{review.relative_time_description}</span>
+                        </div>
+                        <div className="flex items-center gap-1 mb-2">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className={`material-symbols-outlined text-[14px] ${i < review.rating ? 'text-primary' : 'text-border-subtle'}`} style={{ fontVariationSettings: i < review.rating ? "'FILL' 1" : "'FILL' 0" }}>star</span>
+                          ))}
+                        </div>
+                        <p className="text-secondary text-[14px] line-clamp-3">{review.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
